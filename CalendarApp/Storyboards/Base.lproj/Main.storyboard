@@ -67,6 +67,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerTapped:" destination="Uli-8G-Ktl" eventType="touchUpInside" id="pYa-kE-OxP"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ncx-8a-y0J">
                                 <rect key="frame" x="69" y="288" width="277" height="34"/>
@@ -99,6 +102,12 @@
                         <viewLayoutGuide key="safeArea" id="DvO-kS-Mw0"/>
                     </view>
                     <navigationItem key="navigationItem" id="IX6-ct-W0j"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="dqf-Nb-dWP" id="o4m-S7-6dc"/>
+                        <outlet property="passwordTextField" destination="TMO-fs-K4o" id="dCI-En-CKF"/>
+                        <outlet property="roleSegment" destination="VlK-rL-8IW" id="kQR-PM-QHQ"/>
+                        <outlet property="usernameTextField" destination="Ncx-8a-y0J" id="tTJ-lZ-E6v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gww-YV-PII" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
