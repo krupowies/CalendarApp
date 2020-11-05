@@ -10,12 +10,12 @@
 		8F401F4ED00997BF764DAFB0 /* Pods_CalendarApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C22AC36916155B1DEC01E10 /* Pods_CalendarApp.framework */; };
 		F45BE7982550513500F6DB88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE7972550513500F6DB88 /* AppDelegate.swift */; };
 		F45BE79A2550513500F6DB88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE7992550513500F6DB88 /* SceneDelegate.swift */; };
-		F45BE79C2550513500F6DB88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE79B2550513500F6DB88 /* ViewController.swift */; };
 		F45BE79F2550513500F6DB88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45BE79D2550513500F6DB88 /* Main.storyboard */; };
 		F45BE7A12550514300F6DB88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45BE7A02550514300F6DB88 /* Assets.xcassets */; };
 		F45BE7A42550514300F6DB88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45BE7A22550514300F6DB88 /* LaunchScreen.storyboard */; };
 		F45BE7AE25505E6600F6DB88 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE7AD25505E6600F6DB88 /* RegisterViewController.swift */; };
 		F45BE7B0255064D800F6DB88 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F45BE7AF255064D700F6DB88 /* GoogleService-Info.plist */; };
+		F4A519DC25540CED00A2D8BB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A519DB25540CED00A2D8BB /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,13 +25,13 @@
 		F45BE7942550513500F6DB88 /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45BE7972550513500F6DB88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F45BE7992550513500F6DB88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F45BE79B2550513500F6DB88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F45BE79E2550513500F6DB88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F45BE7A02550514300F6DB88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F45BE7A32550514300F6DB88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F45BE7A52550514300F6DB88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F45BE7AD25505E6600F6DB88 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F45BE7AF255064D700F6DB88 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F4A519DB25540CED00A2D8BB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +98,8 @@
 		F45BE7AB25505DE900F6DB88 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F45BE79B2550513500F6DB88 /* ViewController.swift */,
 				F45BE7AD25505E6600F6DB88 /* RegisterViewController.swift */,
+				F4A519DB25540CED00A2D8BB /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -229,9 +229,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F45BE79C2550513500F6DB88 /* ViewController.swift in Sources */,
 				F45BE7982550513500F6DB88 /* AppDelegate.swift in Sources */,
 				F45BE79A2550513500F6DB88 /* SceneDelegate.swift in Sources */,
+				F4A519DC25540CED00A2D8BB /* LoginViewController.swift in Sources */,
 				F45BE7AE25505E6600F6DB88 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
