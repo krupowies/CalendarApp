@@ -16,12 +16,25 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var roleSegment: UISegmentedControl!
+    @IBOutlet weak var registerButton: UIButton!
     
     let db = Firestore.firestore()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpButtons()
+        setUpTextFileds()
+    }
+    
+    func setUpTextFileds() {
+        usernameTextField.layer.cornerRadius = 0.5
+        emailTextField.layer.cornerRadius = 0.5
+        passwordTextField.layer.cornerRadius = 0.5
+       }
+    
+    func setUpButtons() {
+        registerButton.layer.cornerRadius = 10
     }
     
     func validateTextFields() -> String? {

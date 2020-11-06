@@ -14,12 +14,29 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTextFileds()
+        setUpButtons()
     }
+    
+    func setUpTextFileds() {
+        emailTextField.layer.cornerRadius = 0.5
+           passwordTextField.layer.cornerRadius = 0.5
+       }
+    
+    func setUpButtons() {
+        loginButton.layer.cornerRadius = 10
+    }
+    
+    
+    
+    
+    
     
     @IBAction func loginTapped(_ sender: Any) {
         
