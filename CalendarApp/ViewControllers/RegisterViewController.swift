@@ -68,11 +68,11 @@ class RegisterViewController: UIViewController {
                     if let e = error {
                         print(e)
                     } else {
-                        self.db.collection("users").addDocument(data: [
-                            "username": username,
-                            "email": email,
-                            "ID": result!.user.uid,
-                            "role": role
+                        self.db.collection(K.FStore.usersCollection).addDocument(data: [
+                            K.FStore.usernameField: username,
+                            K.FStore.emailField: email,
+                            K.FStore.IDField: result!.user.uid,
+                            K.FStore.roleField: role
                         ]) { (error) in
                             if let e = error {
                                 print("Problem with saving data to Firestore \(e)")

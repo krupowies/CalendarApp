@@ -23,6 +23,7 @@
 		F48E6FB82558873F00104962 /* CoachNotifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FB72558873F00104962 /* CoachNotifViewController.swift */; };
 		F48E6FBA2558876000104962 /* AthleteNotifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FB92558876000104962 /* AthleteNotifViewController.swift */; };
 		F48E6FBC2558877500104962 /* AthleteProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FBB2558877500104962 /* AthleteProfileViewController.swift */; };
+		F48E6FC025588FAE00104962 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FBF25588FAE00104962 /* Constants.swift */; };
 		F4A519DC25540CED00A2D8BB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A519DB25540CED00A2D8BB /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		F48E6FB72558873F00104962 /* CoachNotifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachNotifViewController.swift; sourceTree = "<group>"; };
 		F48E6FB92558876000104962 /* AthleteNotifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteNotifViewController.swift; sourceTree = "<group>"; };
 		F48E6FBB2558877500104962 /* AthleteProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteProfileViewController.swift; sourceTree = "<group>"; };
+		F48E6FBF25588FAE00104962 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F4A519DB25540CED00A2D8BB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 		F45BE78B2550513500F6DB88 = {
 			isa = PBXGroup;
 			children = (
+				F48E6FBF25588FAE00104962 /* Constants.swift */,
 				F45BE7962550513500F6DB88 /* CalendarApp */,
 				F45BE7952550513500F6DB88 /* Products */,
 				B8576E0FD703193E1B4A2864 /* Pods */,
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F48E6FBA2558876000104962 /* AthleteNotifViewController.swift in Sources */,
+				F48E6FC025588FAE00104962 /* Constants.swift in Sources */,
 				F45BE7982550513500F6DB88 /* AppDelegate.swift in Sources */,
 				F48E6FBC2558877500104962 /* AthleteProfileViewController.swift in Sources */,
 				F45BE79A2550513500F6DB88 /* SceneDelegate.swift in Sources */,

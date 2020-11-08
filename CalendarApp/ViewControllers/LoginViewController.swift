@@ -34,13 +34,14 @@ class LoginViewController: UIViewController {
     }
     
     func choosePanel(role: String) {
-        ////ADD CONSTANT FILE FOR ALL Identifier STRINGS LATER !!!
         if role == "coach" {
-            performSegue(withIdentifier: "CoachSegue", sender: nil)
+            performSegue(withIdentifier: K.Segues.toCoachPanel, sender: nil)
         } else {
-            performSegue(withIdentifier: "AthleteSegue", sender: nil)
+            performSegue(withIdentifier: K.Segues.toAthletePanel, sender: nil)
         }
     }
+    
+    
     
     @IBAction func loginTapped(_ sender: Any) {
         
@@ -50,14 +51,14 @@ class LoginViewController: UIViewController {
             //ADD CONSTANT FILE FOR ALL DATABASE STRINGS LATER !!!
             let userID = Auth.auth().currentUser?.uid
             
-            self.db.collection("users").whereField("ID", isEqualTo: userID ?? "ROLE ERROR")
+            self.db.collection(K.FStore.usersCollection).whereField(K.FStore.IDField, isEqualTo: userID ?? "ROLE ERROR")
                 .getDocuments { (querySnapshot, err) in
                     if let error = err {
                         print("Error while getting value \(error)")
                     } else {
                         for document in querySnapshot!.documents{
-                            print(document.get("username") ?? "username error")
-                            let currentRole = document.get("role") ?? "role error"
+                            print(document.get(K.FStore.usernameField) ?? "username error")
+                            let currentRole = document.get(K.FStore.roleField) ?? "role error"
                             print(currentRole)
                             self.choosePanel(role: currentRole as! String)
                         }
