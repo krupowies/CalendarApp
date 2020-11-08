@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tNo-ZZ-PfF">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Coach Calendar View Controller-->
+        <scene sceneID="wdx-Hb-iH7">
+            <objects>
+                <viewController id="zH3-q9-054" customClass="CoachCalendarViewController" customModule="CalendarApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J4W-kF-Hr6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="pqC-A2-pLW"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="calendar" catalog="system" selectedImage="calendar" id="ZW6-7D-anR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="daj-MS-qcA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="935" y="1637"/>
+        </scene>
+        <!--Coach Profile View Controller-->
+        <scene sceneID="ZKI-Hv-qpi">
+            <objects>
+                <viewController id="bHJ-u1-rY7" customClass="CoachProfileViewController" customModule="CalendarApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IFb-op-tn5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="o7v-Gt-hLO"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" selectedImage="person" id="eLz-SU-pNq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v5C-4M-fAe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1943" y="1586"/>
+        </scene>
+        <!--Coach Notif View Controller-->
+        <scene sceneID="jS3-ol-G64">
+            <objects>
+                <viewController id="wpa-ez-B32" customClass="CoachNotifViewController" customModule="CalendarApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BkP-Id-Vlu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ZdQ-c6-5hO"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="bell" catalog="system" selectedImage="bell" id="AKp-qL-HN7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BpO-R2-uBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="28" y="1586"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="3DZ-T2-uWS">
+            <objects>
+                <tabBarController id="tNo-ZZ-PfF" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dHr-vg-iOU"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TuE-23-uAp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="wpa-ez-B32" kind="relationship" relationship="viewControllers" id="68Q-hl-RbN"/>
+                        <segue destination="zH3-q9-054" kind="relationship" relationship="viewControllers" id="XbE-QG-6GI"/>
+                        <segue destination="bHJ-u1-rY7" kind="relationship" relationship="viewControllers" id="odw-ex-EdZ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oC0-Fe-gas" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="935" y="856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bell" catalog="system" width="128" height="124"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+    </resources>
+</document>

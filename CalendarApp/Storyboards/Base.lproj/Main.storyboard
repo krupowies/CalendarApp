@@ -20,7 +20,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="Login"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ebi-E6-F8J"/>
                                 </connections>
@@ -52,11 +54,15 @@
                         <color key="backgroundColor" red="0.55321216579999999" green="0.59958595039999996" blue="0.68317055699999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DFW-Cz-HPZ"/>
+                    <navigationItem key="navigationItem" id="DFW-Cz-HPZ">
+                        <barButtonItem key="backBarButtonItem" title=" " id="mpk-fh-zEf"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="Rt1-P2-z5O" id="erS-C2-2DE"/>
                         <outlet property="loginButton" destination="S1n-Wi-Mgl" id="axZ-HE-G1S"/>
                         <outlet property="passwordTextField" destination="6cz-eu-dDY" id="4gs-NY-4fe"/>
+                        <segue destination="Wds-Tk-6Xv" kind="show" identifier="CoachSegue" id="uaM-P9-pou"/>
+                        <segue destination="7t7-25-YqK" kind="show" identifier="AthleteSegue" id="B3C-le-5FY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -68,8 +74,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qFt-Tc-Gsu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B7X-5S-2qg">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="B7X-5S-2qg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -94,7 +100,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="Register"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="registerTapped:" destination="Uli-8G-Ktl" eventType="touchUpInside" id="pYa-kE-OxP"/>
                                 </connections>
@@ -140,7 +148,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gww-YV-PII" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="660.86956521739137" y="592.63392857142856"/>
+            <point key="canvasLocation" x="-359" y="856"/>
+        </scene>
+        <!--CoachPanel-->
+        <scene sceneID="0tS-WA-536">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CoachPanel" id="Wds-Tk-6Xv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="FO0-cG-yES"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mha-sd-qsB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="830" y="182"/>
+        </scene>
+        <!--AthletePanel-->
+        <scene sceneID="2kw-pJ-Ed0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AthletePanel" id="7t7-25-YqK" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="9zQ-a0-SGM"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aX2-pg-AvJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="826" y="-100"/>
         </scene>
     </scenes>
 </document>

@@ -15,6 +15,14 @@
 		F45BE7A42550514300F6DB88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45BE7A22550514300F6DB88 /* LaunchScreen.storyboard */; };
 		F45BE7AE25505E6600F6DB88 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE7AD25505E6600F6DB88 /* RegisterViewController.swift */; };
 		F45BE7B0255064D800F6DB88 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F45BE7AF255064D700F6DB88 /* GoogleService-Info.plist */; };
+		F48E6FAD2556CB8100104962 /* CoachPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F48E6FAC2556CB8100104962 /* CoachPanel.storyboard */; };
+		F48E6FB02556CE3900104962 /* AthletePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F48E6FAF2556CE3900104962 /* AthletePanel.storyboard */; };
+		F48E6FB2255886B900104962 /* CoachCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FB1255886B900104962 /* CoachCalendarViewController.swift */; };
+		F48E6FB4255886EC00104962 /* AthleteCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FB3255886EC00104962 /* AthleteCalendarViewController.swift */; };
+		F48E6FB62558871600104962 /* CoachProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FB52558871600104962 /* CoachProfileViewController.swift */; };
+		F48E6FB82558873F00104962 /* CoachNotifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FB72558873F00104962 /* CoachNotifViewController.swift */; };
+		F48E6FBA2558876000104962 /* AthleteNotifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FB92558876000104962 /* AthleteNotifViewController.swift */; };
+		F48E6FBC2558877500104962 /* AthleteProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FBB2558877500104962 /* AthleteProfileViewController.swift */; };
 		F4A519DC25540CED00A2D8BB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A519DB25540CED00A2D8BB /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +39,14 @@
 		F45BE7A52550514300F6DB88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F45BE7AD25505E6600F6DB88 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F45BE7AF255064D700F6DB88 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F48E6FAC2556CB8100104962 /* CoachPanel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CoachPanel.storyboard; sourceTree = SOURCE_ROOT; };
+		F48E6FAF2556CE3900104962 /* AthletePanel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AthletePanel.storyboard; sourceTree = SOURCE_ROOT; };
+		F48E6FB1255886B900104962 /* CoachCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachCalendarViewController.swift; sourceTree = "<group>"; };
+		F48E6FB3255886EC00104962 /* AthleteCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteCalendarViewController.swift; sourceTree = "<group>"; };
+		F48E6FB52558871600104962 /* CoachProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachProfileViewController.swift; sourceTree = "<group>"; };
+		F48E6FB72558873F00104962 /* CoachNotifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachNotifViewController.swift; sourceTree = "<group>"; };
+		F48E6FB92558876000104962 /* AthleteNotifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteNotifViewController.swift; sourceTree = "<group>"; };
+		F48E6FBB2558877500104962 /* AthleteProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteProfileViewController.swift; sourceTree = "<group>"; };
 		F4A519DB25540CED00A2D8BB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +116,8 @@
 			children = (
 				F45BE7AD25505E6600F6DB88 /* RegisterViewController.swift */,
 				F4A519DB25540CED00A2D8BB /* LoginViewController.swift */,
+				F48E6FBE2558879E00104962 /* CoachViewControllers */,
+				F48E6FBD2558878000104962 /* AthleteViewControllers */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -107,10 +125,32 @@
 		F45BE7AC25505E1D00F6DB88 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				F48E6FAF2556CE3900104962 /* AthletePanel.storyboard */,
+				F48E6FAC2556CB8100104962 /* CoachPanel.storyboard */,
 				F45BE79D2550513500F6DB88 /* Main.storyboard */,
 				F45BE7A22550514300F6DB88 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F48E6FBD2558878000104962 /* AthleteViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F48E6FB3255886EC00104962 /* AthleteCalendarViewController.swift */,
+				F48E6FB92558876000104962 /* AthleteNotifViewController.swift */,
+				F48E6FBB2558877500104962 /* AthleteProfileViewController.swift */,
+			);
+			path = AthleteViewControllers;
+			sourceTree = "<group>";
+		};
+		F48E6FBE2558879E00104962 /* CoachViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F48E6FB1255886B900104962 /* CoachCalendarViewController.swift */,
+				F48E6FB52558871600104962 /* CoachProfileViewController.swift */,
+				F48E6FB72558873F00104962 /* CoachNotifViewController.swift */,
+			);
+			path = CoachViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +216,9 @@
 				F45BE7A42550514300F6DB88 /* LaunchScreen.storyboard in Resources */,
 				F45BE7A12550514300F6DB88 /* Assets.xcassets in Resources */,
 				F45BE7B0255064D800F6DB88 /* GoogleService-Info.plist in Resources */,
+				F48E6FAD2556CB8100104962 /* CoachPanel.storyboard in Resources */,
 				F45BE79F2550513500F6DB88 /* Main.storyboard in Resources */,
+				F48E6FB02556CE3900104962 /* AthletePanel.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,10 +271,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F48E6FBA2558876000104962 /* AthleteNotifViewController.swift in Sources */,
 				F45BE7982550513500F6DB88 /* AppDelegate.swift in Sources */,
+				F48E6FBC2558877500104962 /* AthleteProfileViewController.swift in Sources */,
 				F45BE79A2550513500F6DB88 /* SceneDelegate.swift in Sources */,
 				F4A519DC25540CED00A2D8BB /* LoginViewController.swift in Sources */,
+				F48E6FB62558871600104962 /* CoachProfileViewController.swift in Sources */,
 				F45BE7AE25505E6600F6DB88 /* RegisterViewController.swift in Sources */,
+				F48E6FB4255886EC00104962 /* AthleteCalendarViewController.swift in Sources */,
+				F48E6FB82558873F00104962 /* CoachNotifViewController.swift in Sources */,
+				F48E6FB2255886B900104962 /* CoachCalendarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

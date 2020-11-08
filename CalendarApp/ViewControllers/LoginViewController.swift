@@ -33,10 +33,14 @@ class LoginViewController: UIViewController {
         loginButton.layer.cornerRadius = 10
     }
     
-    
-    
-    
-    
+    func choosePanel(role: String) {
+        ////ADD CONSTANT FILE FOR ALL Identifier STRINGS LATER !!!
+        if role == "coach" {
+            performSegue(withIdentifier: "CoachSegue", sender: nil)
+        } else {
+            performSegue(withIdentifier: "AthleteSegue", sender: nil)
+        }
+    }
     
     @IBAction func loginTapped(_ sender: Any) {
         
@@ -53,7 +57,9 @@ class LoginViewController: UIViewController {
                     } else {
                         for document in querySnapshot!.documents{
                             print(document.get("username") ?? "username error")
-                            print(document.get("role") ?? "role error")
+                            let currentRole = document.get("role") ?? "role error"
+                            print(currentRole)
+                            self.choosePanel(role: currentRole as! String)
                         }
                     }
             }
