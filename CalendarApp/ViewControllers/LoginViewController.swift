@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     
     let db = Firestore.firestore()
     
@@ -46,9 +47,12 @@ class LoginViewController: UIViewController {
     @IBAction func loginTapped(_ sender: Any) {
         
         if let email = emailTextField.text, let password = passwordTextField.text{Auth.auth().signIn(withEmail: email, password: password) { authResult, error in if let e = error {
-            print(e)
+            print(e.localizedDescription)
+            self.errorLabel.textColor = .red
+            self.errorLabel.text = e.localizedDescription
         } else {
-            //ADD CONSTANT FILE FOR ALL DATABASE STRINGS LATER !!!
+            self.errorLabel.textColor = .green
+            self.errorLabel.text = "Correct email and password"
             let userID = Auth.auth().currentUser?.uid
             
             self.db.collection(K.FStore.usersCollection).whereField(K.FStore.IDField, isEqualTo: userID ?? "ROLE ERROR")
