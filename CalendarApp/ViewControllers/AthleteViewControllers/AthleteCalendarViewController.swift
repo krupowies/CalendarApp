@@ -11,6 +11,9 @@ import FSCalendar
 
 class AthleteCalendarViewController: UIViewController {
     
+    @IBOutlet weak var statusButton: UIButton!
+    @IBOutlet var statusPopUpView: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var athleteCalendar: FSCalendar!
     
@@ -29,6 +32,50 @@ class AthleteCalendarViewController: UIViewController {
         athleteCalendar.dataSource = self
         athleteCalendar.delegate = self
     }
+    
+    func showStatusPopUp(){
+        self.view.addSubview(statusPopUpView)
+        statusPopUpView.center = self.view.center
+        
+        statusPopUpView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        statusPopUpView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4) {
+            self.statusPopUpView.alpha = 1
+            self.statusPopUpView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    func hidePopUp(){
+        UIView.animate(withDuration: 0.4, animations: {
+            self.statusPopUpView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.statusPopUpView.alpha = 1
+            self.statusPopUpView.transform = CGAffineTransform.identity
+        }) { (success: Bool) in
+            self.statusPopUpView.removeFromSuperview()
+        }
+    }
+    
+    
+    @IBAction func statusButtonTap(_ sender: Any) {
+        showStatusPopUp()
+    }
+    
+    @IBAction func goingButtonTap(_ sender: Any) {
+        statusButton.backgroundColor = .green
+        hidePopUp()
+    }
+    
+    @IBAction func notGoingButtonTap(_ sender: Any) {
+        statusButton.backgroundColor = .red
+        hidePopUp()
+    }
+    
+    @IBAction func undecidedButtonTap(_ sender: Any) {
+        statusButton.backgroundColor = .orange
+        hidePopUp()
+    }
+    
 }
 
 extension AthleteCalendarViewController: FSCalendarDataSource {
