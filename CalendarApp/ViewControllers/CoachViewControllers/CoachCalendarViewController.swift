@@ -22,6 +22,8 @@ class CoachCalendarViewController: UIViewController {
     
     func showPopUp() {
         self.view.addSubview(popUpView)
+        popUpView.layer.borderWidth = 5
+        popUpView.layer.borderColor = UIColor.black.cgColor
         popUpView.center = self.view.center
         
         popUpView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)

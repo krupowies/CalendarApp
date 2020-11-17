@@ -129,7 +129,7 @@
                     <view key="view" contentMode="scaleToFill" id="5zJ-aH-xyK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bWN-YK-i03"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="bell" catalog="system" selectedImage="bell" id="0vu-uP-g12"/>

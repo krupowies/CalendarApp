@@ -35,6 +35,8 @@ class AthleteCalendarViewController: UIViewController {
     
     func showStatusPopUp(){
         self.view.addSubview(statusPopUpView)
+        statusPopUpView.layer.borderWidth = 5
+        statusPopUpView.layer.borderColor = UIColor.black.cgColor
         statusPopUpView.center = self.view.center
         
         statusPopUpView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
@@ -104,12 +106,24 @@ extension AthleteCalendarViewController: FSCalendarDelegateAppearance {
         
         if datesWithEvent.contains(dateString) {
 
-            return UIColor.purple
+            return UIColor.green
 
         }
 
         return nil //add your color for default
     }
+}
+
+extension AthleteCalendarViewController: FSCalendarDelegate {
     
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-YYYY"
+        let currentDate = formatter.string(from: date)
+        print("\(currentDate)")
+        print("SELECTED !")
+        dateLabel.text = currentDate
+        dateLabel.textColor = .black
+    }
     
 }
