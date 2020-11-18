@@ -47,7 +47,11 @@
                     <connections>
                         <outlet property="coachCalendar" destination="mS0-sa-eTc" id="UU8-aN-x6W"/>
                         <outlet property="dateLabel" destination="W89-3Q-a0x" id="Uwd-0U-2wb"/>
+                        <outlet property="noteTextField" destination="hOK-au-71l" id="KNQ-ZW-gQz"/>
+                        <outlet property="placeTextField" destination="jS9-ij-4Lr" id="3b2-th-FnI"/>
+                        <outlet property="popUpDateLabel" destination="vhk-OJ-Xii" id="8HF-qu-BNO"/>
                         <outlet property="popUpView" destination="pTi-JR-u4R" id="kny-En-nnN"/>
+                        <outlet property="timePicker" destination="vkc-ce-Gap" id="ZlN-iE-m6D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daj-MS-qcA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

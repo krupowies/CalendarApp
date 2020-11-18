@@ -15,6 +15,12 @@ class CoachCalendarViewController: UIViewController {
     @IBOutlet var popUpView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     
+    //Pop up view outlets
+    @IBOutlet weak var popUpDateLabel: UILabel!
+    @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var placeTextField: UITextField!
+    @IBOutlet weak var noteTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         coachCalendar.delegate = self
