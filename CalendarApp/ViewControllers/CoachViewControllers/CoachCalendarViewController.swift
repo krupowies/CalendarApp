@@ -31,9 +31,9 @@ class CoachCalendarViewController: UIViewController {
         popUpView.layer.borderWidth = 5
         popUpView.layer.borderColor = UIColor.black.cgColor
         popUpView.center = self.view.center
-        
         popUpView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         popUpView.alpha = 0
+        
         
         UIView.animate(withDuration: 0.4) {
             self.popUpView.alpha = 1
@@ -71,6 +71,7 @@ extension CoachCalendarViewController: FSCalendarDelegate {
         print("\(currentDate)")
         print("SELECTED !")
         dateLabel.text = currentDate
-        dateLabel.textColor = .lightGray
+        popUpDateLabel.text = currentDate
+        dateLabel.textColor = .black
     }
 }

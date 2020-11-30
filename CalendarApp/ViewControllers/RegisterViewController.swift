@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import FirebaseFirestoreSwift
 
 class RegisterViewController: UIViewController {
     
@@ -17,6 +18,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var roleSegment: UISegmentedControl!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     
     let db = Firestore.firestore()
     
@@ -46,7 +48,39 @@ class RegisterViewController: UIViewController {
             return "Please fill in all fields."
         }
         
-        return nil
+        if usernameTaken() == true {
+            return "This username is already taken"
+        } else {
+            return nil
+            
+        }
+    }
+    
+    func usernameTaken() -> Bool {
+        let currentUsername = usernameTextField.text
+        var isTaken = false
+        let group = DispatchGroup()
+        
+        db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!)
+        .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        group.enter()
+                        print("Same username ID: \(document.documentID)")
+                        print("Username used")
+                        isTaken = true
+                        group.leave()
+                    }
+                }
+        }
+        group.notify(queue: .main) {
+            print(isTaken)
+            print("Group notify")
+        }
+        print("82 : \(isTaken)")
+        return isTaken
     }
     
     func setUserRole () -> String {
@@ -61,23 +95,36 @@ class RegisterViewController: UIViewController {
         let error = validateTextFields()
         if error != nil {
             print(error!)
+            errorLabel.text = error
         } else {
             let role = setUserRole()
             if let username = usernameTextField.text, let email = emailTextField.text, let password = passwordTextField.text {
                 Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                     if let e = error {
                         print(e)
+                        self.errorLabel.textColor = .red
+                        self.errorLabel.text = e.localizedDescription
                     } else {
-                        self.db.collection(K.FStore.usersCollection).addDocument(data: [
-                            K.FStore.usernameField: username,
-                            K.FStore.emailField: email,
-                            K.FStore.IDField: result!.user.uid,
-                            K.FStore.roleField: role
-                        ]) { (error) in
-                            if let e = error {
-                                print("Problem with saving data to Firestore \(e)")
-                            } else {
-                                 print("Data saved successfully !")
+                        if role == "athlete" {
+                            let newUser = Athlete(email: email, username: username, role: role, ID: (result?.user.uid)!, myCoaches: [])
+                            do {
+                                try self.db.collection(K.FStore.usersCollection).document((result?.user.uid)!).setData(from: newUser)
+                                self.errorLabel.textColor = .green
+                                self.errorLabel.text = "New account successfully created"
+                            } catch let error {
+                                print("Error writing athlete to Firestore: \(error)")
+                                self.errorLabel.text = "Error writing athlete to Firestore: \(error)"
+                            }
+                        } else {
+                            let newUser = Coach(email: email, username: username, role: role, ID: (result?.user.uid)!, myAthletes: [])
+                            do {
+                                try self.db.collection(K.FStore.usersCollection).document((result?.user.uid)!).setData(from: newUser)
+                                self.errorLabel.textColor = .green
+                                self.errorLabel.text = "New account successfully created"
+                                print("New user created")
+                            } catch let error {
+                                print("Error writing coach to Firestore: \(error)")
+                                self.errorLabel.text = "Error writing coach to Firestore: \(error)"
                             }
                         }
                     }

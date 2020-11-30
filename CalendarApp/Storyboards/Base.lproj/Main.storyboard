@@ -141,6 +141,13 @@
                                     <segment title="coach"/>
                                 </segments>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Doe-Rl-vac">
+                                <rect key="frame" x="36" y="730" width="342" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.091660990080000004" blue="0.1015718191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.55321216579999999" green="0.59958595039999996" blue="0.68317055699999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="DvO-kS-Mw0"/>
@@ -148,6 +155,7 @@
                     <navigationItem key="navigationItem" id="IX6-ct-W0j"/>
                     <connections>
                         <outlet property="emailTextField" destination="dqf-Nb-dWP" id="o4m-S7-6dc"/>
+                        <outlet property="errorLabel" destination="Doe-Rl-vac" id="JCN-rA-6i4"/>
                         <outlet property="passwordTextField" destination="TMO-fs-K4o" id="dCI-En-CKF"/>
                         <outlet property="registerButton" destination="ibt-iQ-acs" id="3WI-Nc-rBN"/>
                         <outlet property="roleSegment" destination="VlK-rL-8IW" id="kQR-PM-QHQ"/>

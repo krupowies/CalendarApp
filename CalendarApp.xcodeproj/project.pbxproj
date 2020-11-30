@@ -25,6 +25,9 @@
 		F48E6FBC2558877500104962 /* AthleteProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FBB2558877500104962 /* AthleteProfileViewController.swift */; };
 		F48E6FC025588FAE00104962 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6FBF25588FAE00104962 /* Constants.swift */; };
 		F4A519DC25540CED00A2D8BB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A519DB25540CED00A2D8BB /* LoginViewController.swift */; };
+		F4EEC83325729FE0000CC73A /* Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EEC83225729FE0000CC73A /* Athlete.swift */; };
+		F4EEC83525729FEF000CC73A /* Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EEC83425729FEF000CC73A /* Coach.swift */; };
+		F4EEC8372573E22A000CC73A /* TrainingUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EEC8362573E22A000CC73A /* TrainingUnit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		F48E6FBB2558877500104962 /* AthleteProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteProfileViewController.swift; sourceTree = "<group>"; };
 		F48E6FBF25588FAE00104962 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F4A519DB25540CED00A2D8BB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F4EEC83225729FE0000CC73A /* Athlete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Athlete.swift; sourceTree = "<group>"; };
+		F4EEC83425729FEF000CC73A /* Coach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coach.swift; sourceTree = "<group>"; };
+		F4EEC8362573E22A000CC73A /* TrainingUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingUnit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,7 @@
 			children = (
 				F45BE7972550513500F6DB88 /* AppDelegate.swift */,
 				F45BE7992550513500F6DB88 /* SceneDelegate.swift */,
+				F4EEC83125729FAF000CC73A /* Models */,
 				F45BE7AC25505E1D00F6DB88 /* Storyboards */,
 				F45BE7AB25505DE900F6DB88 /* ViewControllers */,
 				F45BE7A02550514300F6DB88 /* Assets.xcassets */,
@@ -154,6 +161,16 @@
 				F48E6FB72558873F00104962 /* CoachNotifViewController.swift */,
 			);
 			path = CoachViewControllers;
+			sourceTree = "<group>";
+		};
+		F4EEC83125729FAF000CC73A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F4EEC83225729FE0000CC73A /* Athlete.swift */,
+				F4EEC83425729FEF000CC73A /* Coach.swift */,
+				F4EEC8362573E22A000CC73A /* TrainingUnit.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,10 +294,13 @@
 				F48E6FBA2558876000104962 /* AthleteNotifViewController.swift in Sources */,
 				F48E6FC025588FAE00104962 /* Constants.swift in Sources */,
 				F45BE7982550513500F6DB88 /* AppDelegate.swift in Sources */,
+				F4EEC83525729FEF000CC73A /* Coach.swift in Sources */,
 				F48E6FBC2558877500104962 /* AthleteProfileViewController.swift in Sources */,
 				F45BE79A2550513500F6DB88 /* SceneDelegate.swift in Sources */,
 				F4A519DC25540CED00A2D8BB /* LoginViewController.swift in Sources */,
 				F48E6FB62558871600104962 /* CoachProfileViewController.swift in Sources */,
+				F4EEC83325729FE0000CC73A /* Athlete.swift in Sources */,
+				F4EEC8372573E22A000CC73A /* TrainingUnit.swift in Sources */,
 				F45BE7AE25505E6600F6DB88 /* RegisterViewController.swift in Sources */,
 				F48E6FB4255886EC00104962 /* AthleteCalendarViewController.swift in Sources */,
 				F48E6FB82558873F00104962 /* CoachNotifViewController.swift in Sources */,

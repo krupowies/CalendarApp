@@ -12,7 +12,6 @@ class AthleteNotifViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
 }
