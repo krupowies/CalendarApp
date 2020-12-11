@@ -69,8 +69,8 @@
                         <outlet property="errorLabel" destination="SpC-b4-TsB" id="zGb-oZ-uKP"/>
                         <outlet property="loginButton" destination="S1n-Wi-Mgl" id="axZ-HE-G1S"/>
                         <outlet property="passwordTextField" destination="6cz-eu-dDY" id="4gs-NY-4fe"/>
-                        <segue destination="Wds-Tk-6Xv" kind="show" identifier="CoachSegue" id="uaM-P9-pou"/>
-                        <segue destination="7t7-25-YqK" kind="show" identifier="AthleteSegue" id="B3C-le-5FY"/>
+                        <segue destination="Wds-Tk-6Xv" kind="presentation" identifier="CoachSegue" animates="NO" modalPresentationStyle="fullScreen" id="uaM-P9-pou"/>
+                        <segue destination="7t7-25-YqK" kind="presentation" identifier="AthleteSegue" animates="NO" modalPresentationStyle="fullScreen" id="B3C-le-5FY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

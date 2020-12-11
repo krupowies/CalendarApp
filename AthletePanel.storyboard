@@ -113,14 +113,48 @@
                     <view key="view" contentMode="scaleToFill" id="5tu-Fq-PxX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8S-dk-IsU">
+                                <rect key="frame" x="55" y="722" width="305" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButtonTap:" destination="cjQ-i3-yQO" eventType="touchUpInside" id="0fC-Nn-gVf"/>
+                                    <action selector="notGoingButtonTap:" destination="VEm-mu-Bkv" eventType="touchUpInside" id="ET0-Lu-abb"/>
+                                    <segue destination="5UU-eA-P54" kind="presentation" identifier="logOutSegue" animates="NO" modalPresentationStyle="fullScreen" id="ZsM-6d-zfe"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USERNAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIg-eQ-Jrh">
+                                <rect key="frame" x="87" y="103" width="241" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="UVA-QT-eBh"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="person" catalog="system" selectedImage="person" id="YC6-zN-QP0"/>
+                    <connections>
+                        <outlet property="usernameLabel" destination="VIg-eQ-Jrh" id="0vG-Xp-EIn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pyd-Qo-0y7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2490" y="798"/>
+            <point key="canvasLocation" x="2489.8550724637685" y="797.54464285714278"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="aNa-fX-63c">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="5UU-eA-P54" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XHA-Mz-0As" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2490" y="1188"/>
         </scene>
         <!--Athlete Notif View Controller-->
         <scene sceneID="oJt-de-4ge">

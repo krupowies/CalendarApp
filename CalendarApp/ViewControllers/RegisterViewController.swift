@@ -39,48 +39,73 @@ class RegisterViewController: UIViewController {
         registerButton.layer.cornerRadius = 10
     }
     
-    func validateTextFields() -> String? {
+    func usernameTaken(_ completion: @escaping (_ taken: Bool?) -> Void) ->Bool? {
+        let currentUsername = usernameTextField.text
         
+        db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion(nil) // error; unknown if taken
+            } else {
+                if querySnapshot!.isEmpty {
+                    completion(false) // no documents; not taken
+                } else {
+                    completion(true) // at least 1 document; taken
+                }
+            }
+        }
+        return nil
+    }
+    
+//    func usernameTaken() -> Bool {
+//        let currentUsername = usernameTextField.text
+//        var isTaken = false
+//        let group = DispatchGroup()
+//
+//        db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!)
+//        .getDocuments() { (querySnapshot, err) in
+//                if let err = err {
+//                    print("Error getting documents: \(err)")
+//                } else {
+//                    for document in querySnapshot!.documents {
+//                        group.enter()
+//                        print("Same username ID: \(document.documentID)")
+//                        print("Username used")
+//                        isTaken = true
+//                        group.leave()
+//                    }
+//                }
+//        }
+//        group.notify(queue: .main) {
+//            print(isTaken)
+//            print("Group notify")
+//        }
+//        print("82 : \(isTaken)")
+//        return isTaken
+//    }
+    
+    func validateTextFields() -> String? {
+        var error: String? =  nil
         if usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             
             return "Please fill in all fields."
-        }
-        
-        if usernameTaken() == true {
-            return "This username is already taken"
         } else {
-            return nil
-            
-        }
-    }
-    
-    func usernameTaken() -> Bool {
-        let currentUsername = usernameTextField.text
-        var isTaken = false
-        let group = DispatchGroup()
-        
-        db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!)
-        .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        group.enter()
-                        print("Same username ID: \(document.documentID)")
-                        print("Username used")
-                        isTaken = true
-                        group.leave()
-                    }
+            usernameTaken { (taken) in
+                guard let taken = taken else {
+                    return // value is nil when there was an error
                 }
+                if taken {
+                    print("username is taken")
+                    error = "username is taken"
+                } else {
+                    print("username is available")
+                    error = nil
+                }
+            }
         }
-        group.notify(queue: .main) {
-            print(isTaken)
-            print("Group notify")
-        }
-        print("82 : \(isTaken)")
-        return isTaken
+        return error
     }
     
     func setUserRole () -> String {
@@ -88,7 +113,6 @@ class RegisterViewController: UIViewController {
             return "coach"
         } else {return "athlete"}
     }
-    
     
     @IBAction func registerTapped(_ sender: Any) {
         //Validate textfields. If everything is OK -> crate user. If not -> show error
