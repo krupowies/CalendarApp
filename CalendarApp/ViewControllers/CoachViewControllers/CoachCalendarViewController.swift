@@ -11,6 +11,8 @@ import FSCalendar
 
 class CoachCalendarViewController: UIViewController {
     
+    var athletes: [String] = ["Jerzy Kiler", "Komisarz Ryba", "Ferdynad Lipski", "Stanisław Siarzewski"]
+    
     @IBOutlet weak var coachCalendar: FSCalendar!
     @IBOutlet var popUpView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -20,10 +22,16 @@ class CoachCalendarViewController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var placeTextField: UITextField!
     @IBOutlet weak var noteTextField: UITextField!
+    @IBOutlet weak var athletesTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         coachCalendar.delegate = self
+        athletesTableView.delegate = self
+        athletesTableView.dataSource = self
+        athletesTableView.allowsMultipleSelection = true
+        athletesTableView.allowsMultipleSelectionDuringEditing = true
     }
     
     func showPopUp() {
@@ -73,5 +81,28 @@ extension CoachCalendarViewController: FSCalendarDelegate {
         dateLabel.text = currentDate
         popUpDateLabel.text = currentDate
         dateLabel.textColor = .black
+    }
+}
+
+extension CoachCalendarViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return athletes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = athletesTableView.dequeueReusableCell(withIdentifier: "ReusableAthleteCell", for: indexPath)
+        cell.textLabel?.text = athletes[indexPath.row ]
+        
+        return cell
+    }
+}
+
+extension CoachCalendarViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+        }
     }
 }
