@@ -8,10 +8,14 @@
 
 import UIKit
 import FSCalendar
+import FirebaseAuth
+import Firebase
+import FirebaseFirestoreSwift
 
 class CoachCalendarViewController: UIViewController {
     
     var athletes: [String] = ["Jerzy Kiler", "Komisarz Ryba", "Ferdynad Lipski", "Stanisław Siarzewski"]
+    let db = Firestore.firestore()
     
     @IBOutlet weak var coachCalendar: FSCalendar!
     @IBOutlet var popUpView: UIView!
@@ -27,11 +31,35 @@ class CoachCalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //athletes = getMyAthletes()
+        print(athletes)
         coachCalendar.delegate = self
         athletesTableView.delegate = self
         athletesTableView.dataSource = self
         athletesTableView.allowsMultipleSelection = true
         athletesTableView.allowsMultipleSelectionDuringEditing = true
+    }
+    
+    func getMyAthletes() -> [String] {
+        var myAthletes: [String] = []
+        
+        db.collection((K.FStore.usersCollection)).getDocuments { (querySnapshot, error) in
+            if let e = error {
+                print("Problem with getting athletes : \(e)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for doc in snapshotDocuments {
+                        let data = doc.data()
+                        if let username = data["username"] as? String {
+                            print ("FORLOOP :  \(username)")
+                            myAthletes.append(username)
+                        }
+                    }
+                }
+                
+            }
+        }
+        return myAthletes
     }
     
     func showPopUp() {
@@ -92,7 +120,7 @@ extension CoachCalendarViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = athletesTableView.dequeueReusableCell(withIdentifier: "ReusableAthleteCell", for: indexPath)
         cell.textLabel?.text = athletes[indexPath.row ]
-        
+        print("Cell filled")
         return cell
     }
 }

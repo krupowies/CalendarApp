@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8F401F4ED00997BF764DAFB0 /* Pods_CalendarApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C22AC36916155B1DEC01E10 /* Pods_CalendarApp.framework */; };
+		F40093E325852BB800D24696 /* TrainingUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40093E125852BB800D24696 /* TrainingUnitCell.swift */; };
+		F40093E425852BB800D24696 /* TrainingUnitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40093E225852BB800D24696 /* TrainingUnitCell.xib */; };
 		F45BE7982550513500F6DB88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE7972550513500F6DB88 /* AppDelegate.swift */; };
 		F45BE79A2550513500F6DB88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE7992550513500F6DB88 /* SceneDelegate.swift */; };
 		F45BE79F2550513500F6DB88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45BE79D2550513500F6DB88 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 		0C22AC36916155B1DEC01E10 /* Pods_CalendarApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalendarApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2E1EE7AC91079551BB1C45F /* Pods-CalendarApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalendarApp.debug.xcconfig"; path = "Target Support Files/Pods-CalendarApp/Pods-CalendarApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B5878091F148972D8CFDBB2F /* Pods-CalendarApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalendarApp.release.xcconfig"; path = "Target Support Files/Pods-CalendarApp/Pods-CalendarApp.release.xcconfig"; sourceTree = "<group>"; };
+		F40093E125852BB800D24696 /* TrainingUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingUnitCell.swift; sourceTree = "<group>"; };
+		F40093E225852BB800D24696 /* TrainingUnitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainingUnitCell.xib; sourceTree = "<group>"; };
 		F45BE7942550513500F6DB88 /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45BE7972550513500F6DB88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F45BE7992550513500F6DB88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,10 +91,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F40093E025852B0900D24696 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F40093E125852BB800D24696 /* TrainingUnitCell.swift */,
+				F40093E225852BB800D24696 /* TrainingUnitCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		F45BE78B2550513500F6DB88 = {
 			isa = PBXGroup;
 			children = (
-				F48E6FBF25588FAE00104962 /* Constants.swift */,
 				F45BE7962550513500F6DB88 /* CalendarApp */,
 				F45BE7952550513500F6DB88 /* Products */,
 				B8576E0FD703193E1B4A2864 /* Pods */,
@@ -112,11 +124,13 @@
 				F45BE7972550513500F6DB88 /* AppDelegate.swift */,
 				F45BE7992550513500F6DB88 /* SceneDelegate.swift */,
 				F4EEC83125729FAF000CC73A /* Models */,
+				F40093E025852B0900D24696 /* Cells */,
 				F45BE7AC25505E1D00F6DB88 /* Storyboards */,
 				F45BE7AB25505DE900F6DB88 /* ViewControllers */,
 				F45BE7A02550514300F6DB88 /* Assets.xcassets */,
 				F45BE7A52550514300F6DB88 /* Info.plist */,
 				F45BE7AF255064D700F6DB88 /* GoogleService-Info.plist */,
+				F48E6FBF25588FAE00104962 /* Constants.swift */,
 			);
 			path = CalendarApp;
 			sourceTree = "<group>";
@@ -238,6 +252,7 @@
 				F45BE7B0255064D800F6DB88 /* GoogleService-Info.plist in Resources */,
 				F48E6FAD2556CB8100104962 /* CoachPanel.storyboard in Resources */,
 				F45BE79F2550513500F6DB88 /* Main.storyboard in Resources */,
+				F40093E425852BB800D24696 /* TrainingUnitCell.xib in Resources */,
 				F48E6FB02556CE3900104962 /* AthletePanel.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +312,7 @@
 				F4EEC83525729FEF000CC73A /* Coach.swift in Sources */,
 				F48E6FBC2558877500104962 /* AthleteProfileViewController.swift in Sources */,
 				F45BE79A2550513500F6DB88 /* SceneDelegate.swift in Sources */,
+				F40093E325852BB800D24696 /* TrainingUnitCell.swift in Sources */,
 				F4A519DC25540CED00A2D8BB /* LoginViewController.swift in Sources */,
 				F48E6FB62558871600104962 /* CoachProfileViewController.swift in Sources */,
 				F4EEC83325729FE0000CC73A /* Athlete.swift in Sources */,

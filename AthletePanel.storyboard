@@ -163,14 +163,24 @@
                     <view key="view" contentMode="scaleToFill" id="5zJ-aH-xyK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FTp-rz-Mc7">
+                                <rect key="frame" x="20" y="115" width="374" height="659"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bWN-YK-i03"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="bell" catalog="system" selectedImage="bell" id="0vu-uP-g12"/>
+                    <connections>
+                        <outlet property="trainingPlanTable" destination="FTp-rz-Mc7" id="P2n-nf-IuW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uvk-hz-LEM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-96" y="798"/>
+            <point key="canvasLocation" x="-97.101449275362327" y="797.54464285714278"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oHO-hZ-JMT">
