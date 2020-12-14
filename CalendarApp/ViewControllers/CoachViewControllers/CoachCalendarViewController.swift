@@ -31,7 +31,7 @@ class CoachCalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //athletes = getMyAthletes()
+        athletes = getMyAthletes()
         print(athletes)
         coachCalendar.delegate = self
         athletesTableView.delegate = self
@@ -40,26 +40,40 @@ class CoachCalendarViewController: UIViewController {
         athletesTableView.allowsMultipleSelectionDuringEditing = true
     }
     
+    func setTrainingUnit() -> TrainingUnit {
+        var currentTraining = TrainingUnit()
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        let timeOnly = timeFormatter.string(from: timePicker.date)
+        if let date = popUpDateLabel.text, let place = placeTextField.text, let note = noteTextField.text {
+            currentTraining = TrainingUnit(date: date, time: timeOnly, place: place, athletes: [], note: note)
+        }
+        
+        return currentTraining
+    }
+    
     func getMyAthletes() -> [String] {
         var myAthletes: [String] = []
-        
-        db.collection((K.FStore.usersCollection)).getDocuments { (querySnapshot, error) in
-            if let e = error {
-                print("Problem with getting athletes : \(e)")
-            } else {
-                if let snapshotDocuments = querySnapshot?.documents {
-                    for doc in snapshotDocuments {
-                        let data = doc.data()
-                        if let username = data["username"] as? String {
-                            print ("FORLOOP :  \(username)")
-                            myAthletes.append(username)
+        DispatchQueue.main.async {
+            self.db.collection((K.FStore.usersCollection)).getDocuments { (querySnapshot, error) in
+                if let e = error {
+                    print("Problem with getting athletes : \(e)")
+                } else {
+                    if let snapshotDocuments = querySnapshot?.documents {
+                        for doc in snapshotDocuments {
+                            let data = doc.data()
+                            if let username = data["username"] as? String {
+                                print ("FORLOOP :  \(username)")
+                                myAthletes.append(username)
+                            }
                         }
                     }
+                    
                 }
-                
             }
         }
-        return myAthletes
+            return myAthletes
     }
     
     func showPopUp() {
@@ -91,8 +105,16 @@ class CoachCalendarViewController: UIViewController {
         showPopUp()
     }
     
-    @IBAction func dismissPopUp(_ sender: Any) {
+    @IBAction func setTrainingButtonTap(_ sender: Any) {
         hidePopUp()
+        let newTraining = setTrainingUnit()
+        do {
+            try db.collection("trainings").document().setData(from: newTraining)
+            print("New workout successfully added to Firestore")
+        } catch let error {
+            print("Error writing workout to Firestore: \(error)")
+        }
+        
     }
     
     
