@@ -14,8 +14,9 @@ import FirebaseFirestoreSwift
 
 class CoachCalendarViewController: UIViewController {
     
-    var athletes: [String] = ["Jerzy Kiler", "Komisarz Ryba", "Ferdynad Lipski", "Stanisław Siarzewski"]
+    var athletes = [String]()
     let db = Firestore.firestore()
+    var selectedAthletes = [String]()
     
     @IBOutlet weak var coachCalendar: FSCalendar!
     @IBOutlet var popUpView: UIView!
@@ -27,11 +28,13 @@ class CoachCalendarViewController: UIViewController {
     @IBOutlet weak var placeTextField: UITextField!
     @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var athletesTableView: UITableView!
+    @IBOutlet weak var closeButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        athletes = getMyAthletes()
+        setUpButtons()
+        setUpLabels()
         print(athletes)
         coachCalendar.delegate = self
         athletesTableView.delegate = self
@@ -40,40 +43,75 @@ class CoachCalendarViewController: UIViewController {
         athletesTableView.allowsMultipleSelectionDuringEditing = true
     }
     
+    func getSelectedAthletes() -> [String] {
+        var selectedAthletes = [String]()
+        
+        for cell in athletesTableView.visibleCells {
+            if cell.accessoryType == UITableViewCell.AccessoryType.checkmark{
+                if let currentAthlete = cell.textLabel?.text{
+                        selectedAthletes.append(currentAthlete)
+                }
+            }
+        }
+        
+        return selectedAthletes
+    }
+    
     func setTrainingUnit() -> TrainingUnit {
         var currentTraining = TrainingUnit()
-        
+        let athletes = getSelectedAthletes()
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm"
         let timeOnly = timeFormatter.string(from: timePicker.date)
         if let date = popUpDateLabel.text, let place = placeTextField.text, let note = noteTextField.text {
-            currentTraining = TrainingUnit(date: date, time: timeOnly, place: place, athletes: [], note: note)
+            currentTraining = TrainingUnit(date: date, time: timeOnly, place: place, athletes: athletes, note: note)
         }
         
         return currentTraining
     }
     
-    func getMyAthletes() -> [String] {
+    
+    func getMyAthletes(callback: @escaping([String]) -> Void) {
         var myAthletes: [String] = []
-        DispatchQueue.main.async {
-            self.db.collection((K.FStore.usersCollection)).getDocuments { (querySnapshot, error) in
-                if let e = error {
-                    print("Problem with getting athletes : \(e)")
-                } else {
-                    if let snapshotDocuments = querySnapshot?.documents {
-                        for doc in snapshotDocuments {
-                            let data = doc.data()
-                            if let username = data["username"] as? String {
-                                print ("FORLOOP :  \(username)")
-                                myAthletes.append(username)
-                            }
+        self.db.collection((K.FStore.usersCollection)).getDocuments { (querySnapshot, error) in
+            if let e = error {
+                print("Problem with getting athletes : \(e)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for doc in snapshotDocuments {
+                        let data = doc.data()
+                        if let username = data["username"] as? String {
+                            print ("FORLOOP :  \(username)")
+                            myAthletes.append(username)
+                            callback(myAthletes)
                         }
                     }
-                    
                 }
             }
         }
-            return myAthletes
+    }
+        
+    func setUpButtons(){
+        closeButton.layer.borderWidth = 3
+        closeButton.layer.borderColor = UIColor.systemRed.cgColor
+    }
+    
+    func setUpLabels(){
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-YYYY"
+        let currentDate = formatter.string(from: date)
+        dateLabel.text = currentDate
+        popUpDateLabel.text = currentDate
+        dateLabel.textColor = .black
+    }
+    
+    func clearPopUp(){
+        placeTextField.text = ""
+        noteTextField.text = ""
+        for cell in athletesTableView.visibleCells {
+            cell.accessoryType = UITableViewCell.AccessoryType.none
+        }
     }
     
     func showPopUp() {
@@ -84,10 +122,18 @@ class CoachCalendarViewController: UIViewController {
         popUpView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         popUpView.alpha = 0
         
+        clearPopUp()
         
         UIView.animate(withDuration: 0.4) {
             self.popUpView.alpha = 1
             self.popUpView.transform = CGAffineTransform.identity
+        }
+        
+        self.getMyAthletes { (myAthletes) in
+            self.athletes = myAthletes
+            DispatchQueue.main.async {
+                self.athletesTableView.reloadData()
+            }
         }
     }
     
@@ -105,6 +151,11 @@ class CoachCalendarViewController: UIViewController {
         showPopUp()
     }
     
+    @IBAction func closeButtonTap(_ sender: Any) {
+        hidePopUp()
+    }
+    
+    
     @IBAction func setTrainingButtonTap(_ sender: Any) {
         hidePopUp()
         let newTraining = setTrainingUnit()
@@ -116,8 +167,6 @@ class CoachCalendarViewController: UIViewController {
         }
         
     }
-    
-    
 }
 
 extension CoachCalendarViewController: FSCalendarDelegate {
@@ -136,12 +185,12 @@ extension CoachCalendarViewController: FSCalendarDelegate {
 
 extension CoachCalendarViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return athletes.count
+        return self.athletes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = athletesTableView.dequeueReusableCell(withIdentifier: "ReusableAthleteCell", for: indexPath)
-        cell.textLabel?.text = athletes[indexPath.row ]
+        cell.textLabel?.text = self.athletes[indexPath.row]
         print("Cell filled")
         return cell
     }

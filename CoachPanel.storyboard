@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tNo-ZZ-PfF">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -11,7 +12,7 @@
             <objects>
                 <viewController id="zH3-q9-054" customClass="CoachCalendarViewController" customModule="CalendarApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J4W-kF-Hr6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mS0-sa-eTc" customClass="FSCalendar">
@@ -45,6 +46,7 @@
                     <tabBarItem key="tabBarItem" title="" image="calendar" catalog="system" selectedImage="calendar" id="ZW6-7D-anR"/>
                     <connections>
                         <outlet property="athletesTableView" destination="ZXG-M4-yNG" id="W5u-1u-aIC"/>
+                        <outlet property="closeButton" destination="m9U-CR-tpe" id="yar-FT-yDn"/>
                         <outlet property="coachCalendar" destination="mS0-sa-eTc" id="UU8-aN-x6W"/>
                         <outlet property="dateLabel" destination="W89-3Q-a0x" id="Uwd-0U-2wb"/>
                         <outlet property="noteTextField" destination="hOK-au-71l" id="KNQ-ZW-gQz"/>
@@ -112,6 +114,17 @@
                                 </tableViewCell>
                             </prototypes>
                         </tableView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9U-CR-tpe">
+                            <rect key="frame" x="289" y="4" width="60" height="39"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="close">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="closeButtonTap:" destination="zH3-q9-054" eventType="touchUpInside" id="112-C6-9bC"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.55321216579999999" green="0.59958595039999996" blue="0.68317055699999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <viewLayoutGuide key="safeArea" id="yaK-iA-uEN"/>
@@ -124,7 +137,7 @@
             <objects>
                 <viewController id="bHJ-u1-rY7" customClass="CoachProfileViewController" customModule="CalendarApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IFb-op-tn5">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anE-Ny-IDM">
@@ -173,7 +186,7 @@
             <objects>
                 <viewController id="wpa-ez-B32" customClass="CoachNotifViewController" customModule="CalendarApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BkP-Id-Vlu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ZdQ-c6-5hO"/>

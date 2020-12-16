@@ -21,7 +21,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     let db = Firestore.firestore()
-    
+    var ifUsernameTaken = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,23 +39,40 @@ class RegisterViewController: UIViewController {
         registerButton.layer.cornerRadius = 10
     }
     
-    func usernameTaken(_ completion: @escaping (_ taken: Bool?) -> Void) ->Bool? {
+//    func usernameTaken(_ completion: @escaping (_ taken: Bool?) -> Void) ->Bool? {
+//        let currentUsername = usernameTextField.text
+//
+//        db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!).getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//                completion(nil) // error; unknown if taken
+//            } else {
+//                if querySnapshot!.isEmpty {
+//                    completion(false) // no documents; not taken
+//                } else {
+//                    completion(true) // at least 1 document; taken
+//                }
+//            }
+//        }
+//        return nil
+//    }
+    
+    func usernameTaken(callback: @escaping(Bool?) -> Void) {
         let currentUsername = usernameTextField.text
-        
-        db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!).getDocuments() { (querySnapshot, err) in
+        self.db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
-                completion(nil) // error; unknown if taken
+                callback(nil) // error; unknown if taken
             } else {
                 if querySnapshot!.isEmpty {
-                    completion(false) // no documents; not taken
+                    callback(false) // no documents; not taken
                 } else {
-                    completion(true) // at least 1 document; taken
+                    callback(true) // at least 1 document; taken
                 }
             }
         }
-        return nil
     }
+    
     
 //    func usernameTaken() -> Bool {
 //        let currentUsername = usernameTextField.text
@@ -92,16 +109,12 @@ class RegisterViewController: UIViewController {
             
             return "Please fill in all fields."
         } else {
-            usernameTaken { (taken) in
-                guard let taken = taken else {
-                    return // value is nil when there was an error
-                }
-                if taken {
-                    print("username is taken")
-                    error = "username is taken"
-                } else {
-                    print("username is available")
-                    error = nil
+            self.usernameTaken { (ifTaken) in
+                self.ifUsernameTaken = ifTaken ?? false
+                DispatchQueue.main.async {
+                    if self.ifUsernameTaken == true {
+                        error = "User name taken"
+                    } else {error = nil}
                 }
             }
         }
