@@ -46,6 +46,7 @@
                     <tabBarItem key="tabBarItem" title="" image="calendar" catalog="system" selectedImage="calendar" id="PYy-dS-GSY"/>
                     <connections>
                         <outlet property="athleteCalendar" destination="vsg-Zb-Ojo" id="a2l-A8-3RH"/>
+                        <outlet property="closeButton" destination="A0g-2v-ATc" id="cq0-Ts-MI6"/>
                         <outlet property="dateLabel" destination="R8g-0Y-iyJ" id="4Jb-UW-otU"/>
                         <outlet property="statusButton" destination="82w-cb-jpW" id="8pR-Uc-eJO"/>
                         <outlet property="statusPopUpView" destination="xOm-no-sht" id="AV6-0M-ogJ"/>
@@ -99,6 +100,17 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0g-2v-ATc">
+                            <rect key="frame" x="301" y="7" width="60" height="39"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="close">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="closeButtonTap:" destination="VEm-mu-Bkv" eventType="touchUpInside" id="msB-Hv-a3O"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <viewLayoutGuide key="safeArea" id="yqV-0P-bOx"/>
@@ -129,12 +141,16 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USERNAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIg-eQ-Jrh">
-                                <rect key="frame" x="87" y="103" width="241" height="46"/>
+                                <rect key="frame" x="87" y="278" width="241" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GKT-6i-q6h">
+                                <rect key="frame" x="145" y="122" width="125" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="UVA-QT-eBh"/>

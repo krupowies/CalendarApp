@@ -19,6 +19,8 @@ class CoachCalendarViewController: UIViewController {
     let db = Firestore.firestore()
     var selectedAthletes = [String]()
     
+    
+    
     @IBOutlet weak var coachCalendar: FSCalendar!
     @IBOutlet var popUpView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -54,7 +56,6 @@ class CoachCalendarViewController: UIViewController {
                 }
             }
         }
-        
         return selectedAthletes
     }
     
@@ -67,39 +68,8 @@ class CoachCalendarViewController: UIViewController {
         if let date = popUpDateLabel.text, let place = placeTextField.text, let note = noteTextField.text {
             currentTraining = TrainingUnit(date: date, time: timeOnly, place: place, athletes: athletes, note: note)
         }
-        
         return currentTraining
     }
-    
-        //TUTAJ DODAĆ TWORZENIE NOWEGO OBIEKTU trainingAthlete (nowa funckja)
-        //func createTrainingAthlete(workout: TrainingUnit)
-    //    func createTrainingAthlete(workout: TrainingUnit){
-    //
-    //
-    //        for athlete in workout.athletes {
-    //            //let training = TrainingAthlete(athlete: athle
-    //        }
-    //    }
-    //
-    //    func getTrainingID(training: TrainingUnit) -> String {
-    //        var trainingID = "123";
-    //        db.collection("trainings")
-    //            .whereField("date", isEqualTo: training.date)
-    //            .whereField("note", isEqualTo: training.note)
-    //            .whereField("place", isEqualTo: training.place)
-    //            .whereField("athletes", isEqualTo: training.athletes)
-    //            .whereField("time", isEqualTo: training.time).getDocuments { (querySnapshot, err) in
-    //                if let error = err {
-    //                     print("Error while getting ID \(error)")
-    //                } else {
-    //                    for document in querySnapshot!.documents {
-    //                        trainingID = document.documentID
-    //                    }
-    //                }
-    //        }
-    //        return trainingID
-    //    }
-    
     
     func getTrainingID(training: TrainingUnit ,callback: @escaping(String) -> Void) {
         var trainingID: String = "init"
@@ -121,6 +91,15 @@ class CoachCalendarViewController: UIViewController {
             }
         }
         
+    }
+    
+    func addTrainingAthlete(workout: TrainingAthlete){
+        let newTrainingAthlete = workout
+        do {
+            try self.db.collection("training Athlete").document().setData(from: newTrainingAthlete)
+        } catch let error {
+            print("Error writing workout to Firestore \(error)")
+        }
     }
     
     //TUTAJ DODAĆ WARUNEK WHERE ROLE = "ATHLETE"
@@ -221,15 +200,13 @@ class CoachCalendarViewController: UIViewController {
             self.tempID = currentID
             DispatchQueue.main.async {
                 for athlete in newTraining.athletes{
-                    let classTest = TrainingAthlete(athlete: athlete, trainingID: self.tempID)
-                    print(classTest.athlete)
-                    print(classTest.trainingID)
+                    let tempWorkout = TrainingAthlete(athlete: athlete, trainingID: self.tempID)
+                    self.addTrainingAthlete(workout: tempWorkout)
+                    print(tempWorkout.athlete)
+                    print(tempWorkout.trainingID)
                 }
             }
         }
-        //let queryRes = getTrainingID(training: newTraining)
-        //print("QUERY TREINING ID : \(queryRes)")
-        
     }
 }
 

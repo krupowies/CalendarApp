@@ -8,16 +8,26 @@
 
 import UIKit
 import FSCalendar
+import FirebaseAuth
+import Firebase
+import FirebaseFirestoreSwift
 
 class AthleteCalendarViewController: UIViewController {
     
     @IBOutlet weak var statusButton: UIButton!
     @IBOutlet var statusPopUpView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var closeButton: UIButton!
+    
     
     @IBOutlet weak var athleteCalendar: FSCalendar!
     
+    let db = Firestore.firestore()
+    var currentUser = ""
+    
     var datesWithEvent = ["2020-11-03", "2020-11-06", "2020-11-12", "2020-11-25"]
+    
+    var testDate = [String]()
 
     var datesWithMultipleEvents = ["2020-10-08", "2020-10-16", "2020-10-20", "2020-10-28"]
 
@@ -29,8 +39,64 @@ class AthleteCalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpButtons()
+        setUpLabels()
         athleteCalendar.dataSource = self
         athleteCalendar.delegate = self
+        setCurrentUsername()
+    }
+    
+    func setUpButtons(){
+        closeButton.layer.borderWidth = 3
+        closeButton.layer.borderColor = UIColor.systemRed.cgColor
+    }
+    
+    func setUpLabels(){
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-YYYY"
+        let currentDate = formatter.string(from: date)
+        dateLabel.text = currentDate
+        dateLabel.textColor = .black
+    }
+    
+    func setCurrentUsername(){
+        let currentUserID = Auth.auth().currentUser?.uid
+        db.collection(K.FStore.usersCollection)
+            .whereField("ID", isEqualTo: currentUserID as Any)
+            .getDocuments { (querySnapshot, error) in
+                if let e = error {
+                    print("Problem with getting athlete data : \(e)")
+                } else {
+                    if let snapshotDocuments = querySnapshot?.documents {
+                        for doc in snapshotDocuments {
+                            let username = doc.get("username")
+                            self.currentUser = username as! String
+                        }
+                    }
+                }
+        }
+    }
+    
+    func getMyTrainings(callback: @escaping([String]) -> Void) {
+        var myTrainings: [String] = []
+        self.db.collection("training Athlete")
+        .whereField("athlete", isEqualTo: currentUser)
+            .getDocuments { (querySnapshot, error) in
+            if let e = error {
+                print("Problem with getting training data : \(e)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for doc in snapshotDocuments {
+                        print("DUPA TEST")
+                        let trainingID = doc.get("trainingID")
+                        myTrainings.append(trainingID as! String)
+                        print("FUNC: \(trainingID as! String)")
+                        callback(myTrainings)
+                    }
+                }
+            }
+        }
     }
     
     func showStatusPopUp(){
@@ -45,6 +111,13 @@ class AthleteCalendarViewController: UIViewController {
         UIView.animate(withDuration: 0.4) {
             self.statusPopUpView.alpha = 1
             self.statusPopUpView.transform = CGAffineTransform.identity
+        }
+        
+        getMyTrainings { (dates) in
+            self.testDate = dates
+            DispatchQueue.main.async {
+                print("show pop up : \(self.testDate)")
+            }
         }
     }
     
@@ -61,6 +134,7 @@ class AthleteCalendarViewController: UIViewController {
     
     @IBAction func statusButtonTap(_ sender: Any) {
         showStatusPopUp()
+        print(currentUser)
     }
     
     @IBAction func goingButtonTap(_ sender: Any) {
@@ -77,6 +151,11 @@ class AthleteCalendarViewController: UIViewController {
         statusButton.backgroundColor = .orange
         hidePopUp()
     }
+    
+    @IBAction func closeButtonTap(_ sender: Any) {
+        hidePopUp()
+    }
+    
     
 }
 
