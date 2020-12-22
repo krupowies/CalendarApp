@@ -93,12 +93,13 @@ class CoachCalendarViewController: UIViewController {
         
     }
     
-    func addTrainingAthlete(workout: TrainingAthlete){
+    func addTrainingAthlete(workout: TrainingAthlete, docID: String){
         let newTrainingAthlete = workout
+        let ref: DocumentReference = db.collection("trainings").document(docID)
         do {
-            try self.db.collection("training Athlete").document().setData(from: newTrainingAthlete)
+            try ref.collection("testSubCol").document(newTrainingAthlete.athlete).setData(from: newTrainingAthlete)
         } catch let error {
-            print("Error writing workout to Firestore \(error)")
+            print("Error writing workout to Firestore: \(error)")
         }
     }
     
@@ -200,10 +201,9 @@ class CoachCalendarViewController: UIViewController {
             self.tempID = currentID
             DispatchQueue.main.async {
                 for athlete in newTraining.athletes{
-                    let tempWorkout = TrainingAthlete(athlete: athlete, trainingID: self.tempID)
-                    self.addTrainingAthlete(workout: tempWorkout)
-                    print(tempWorkout.athlete)
-                    print(tempWorkout.trainingID)
+                    let athleteStatus = TrainingAthlete(athlete: athlete)
+                    self.addTrainingAthlete(workout: athleteStatus, docID: self.tempID)
+                    print("added subcollection")
                 }
             }
         }

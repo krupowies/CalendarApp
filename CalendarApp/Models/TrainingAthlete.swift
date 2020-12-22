@@ -10,12 +10,10 @@ import Foundation
 
 class TrainingAthlete: Codable {
     var athlete: String
-    var trainingID: String
     var status: Int
     
-    init(athlete: String, trainingID: String){
+    init(athlete: String){
         self.athlete = athlete
-        self.trainingID = trainingID
         self.status = 0
     }
 }
