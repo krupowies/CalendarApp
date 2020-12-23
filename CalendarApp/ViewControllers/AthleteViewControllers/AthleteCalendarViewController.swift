@@ -25,15 +25,15 @@ class AthleteCalendarViewController: UIViewController {
     let db = Firestore.firestore()
     var currentUser = ""
     
-    var datesWithEvent = ["2020-11-03", "2020-11-06", "2020-11-12", "2020-11-25"]
+    var datesWithEvent = ["11-11-2020", "12-11-2020", "13-11-2020", "14-11-2020"]
     
     var testDate = [String]()
 
-    var datesWithMultipleEvents = ["2020-10-08", "2020-10-16", "2020-10-20", "2020-10-28"]
+    var datesWithMultipleEvents = ["01-11-2020", "02-11-2020", "03-11-2020", "04-11-2020"]
 
     fileprivate lazy var dateFormatter2: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "dd-MM-YYYY" //"yyyy-MM-dd"
         return formatter
     }()
     
@@ -44,6 +44,13 @@ class AthleteCalendarViewController: UIViewController {
         athleteCalendar.dataSource = self
         athleteCalendar.delegate = self
         setCurrentUsername()
+        self.getMyTrainings { (trainings) in
+            self.testDate = trainings
+            DispatchQueue.main.async {
+                print(self.testDate)
+            }
+            print(self.testDate)
+        }
     }
     
     func setUpButtons(){
@@ -80,22 +87,20 @@ class AthleteCalendarViewController: UIViewController {
     
     func getMyTrainings(callback: @escaping([String]) -> Void) {
         var myTrainings: [String] = []
-        self.db.collection("training Athlete")
-        .whereField("athlete", isEqualTo: currentUser)
+        self.db.collection("trainings").whereField("athletes", arrayContains: currentUser)
             .getDocuments { (querySnapshot, error) in
-            if let e = error {
-                print("Problem with getting training data : \(e)")
-            } else {
-                if let snapshotDocuments = querySnapshot?.documents {
-                    for doc in snapshotDocuments {
-                        print("DUPA TEST")
-                        let trainingID = doc.get("trainingID")
-                        myTrainings.append(trainingID as! String)
-                        print("FUNC: \(trainingID as! String)")
-                        callback(myTrainings)
+                if let e = error {
+                    print("Problem with getting training data : \(e)")
+                } else {
+                    if let snapshotDocuments = querySnapshot?.documents {
+                        for doc in snapshotDocuments {
+                            let tempDate = doc.get("date")
+                            myTrainings.append(tempDate as! String)
+                            print("FUNC : \(tempDate as! String)")
+                            callback(myTrainings)
+                        }
                     }
                 }
-            }
         }
     }
     
@@ -131,10 +136,20 @@ class AthleteCalendarViewController: UIViewController {
         }
     }
     
+    @IBAction func refreshButtonTap(_ sender: Any) {
+        self.getMyTrainings { (trainings) in
+            self.testDate = trainings
+            DispatchQueue.main.async {
+                self.athleteCalendar.reloadData()
+                print("refresh \(self.testDate)")
+                
+            }
+        }
+    }
+    
     
     @IBAction func statusButtonTap(_ sender: Any) {
         showStatusPopUp()
-        print(currentUser)
     }
     
     @IBAction func goingButtonTap(_ sender: Any) {
@@ -165,7 +180,7 @@ extension AthleteCalendarViewController: FSCalendarDataSource {
 
         let dateString = self.dateFormatter2.string(from: date)
 
-        if self.datesWithEvent.contains(dateString) {
+        if self.testDate.contains(dateString) {
             return 1
         }
 
@@ -183,7 +198,7 @@ extension AthleteCalendarViewController: FSCalendarDelegateAppearance {
         
         let dateString = self.dateFormatter2.string(from: date)
         
-        if datesWithEvent.contains(dateString) {
+        if testDate.contains(dateString) {
 
             return UIColor.green
 
