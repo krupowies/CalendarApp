@@ -11,6 +11,8 @@
 		F40093E325852BB800D24696 /* TrainingUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40093E125852BB800D24696 /* TrainingUnitCell.swift */; };
 		F40093E425852BB800D24696 /* TrainingUnitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40093E225852BB800D24696 /* TrainingUnitCell.xib */; };
 		F40093E6258CF1CC00D24696 /* TrainingAthlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40093E5258CF1CB00D24696 /* TrainingAthlete.swift */; };
+		F40093E9259A547000D24696 /* CoachTrainingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40093E7259A547000D24696 /* CoachTrainingCell.swift */; };
+		F40093EA259A547100D24696 /* CoachTrainingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40093E8259A547000D24696 /* CoachTrainingCell.xib */; };
 		F45BE7982550513500F6DB88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE7972550513500F6DB88 /* AppDelegate.swift */; };
 		F45BE79A2550513500F6DB88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE7992550513500F6DB88 /* SceneDelegate.swift */; };
 		F45BE79F2550513500F6DB88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45BE79D2550513500F6DB88 /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 		F40093E125852BB800D24696 /* TrainingUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingUnitCell.swift; sourceTree = "<group>"; };
 		F40093E225852BB800D24696 /* TrainingUnitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainingUnitCell.xib; sourceTree = "<group>"; };
 		F40093E5258CF1CB00D24696 /* TrainingAthlete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingAthlete.swift; sourceTree = "<group>"; };
+		F40093E7259A547000D24696 /* CoachTrainingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTrainingCell.swift; sourceTree = "<group>"; };
+		F40093E8259A547000D24696 /* CoachTrainingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTrainingCell.xib; sourceTree = "<group>"; };
 		F45BE7942550513500F6DB88 /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45BE7972550513500F6DB88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F45BE7992550513500F6DB88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 			children = (
 				F40093E125852BB800D24696 /* TrainingUnitCell.swift */,
 				F40093E225852BB800D24696 /* TrainingUnitCell.xib */,
+				F40093E7259A547000D24696 /* CoachTrainingCell.swift */,
+				F40093E8259A547000D24696 /* CoachTrainingCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -250,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F40093EA259A547100D24696 /* CoachTrainingCell.xib in Resources */,
 				F45BE7A42550514300F6DB88 /* LaunchScreen.storyboard in Resources */,
 				F45BE7A12550514300F6DB88 /* Assets.xcassets in Resources */,
 				F45BE7B0255064D800F6DB88 /* GoogleService-Info.plist in Resources */,
@@ -324,6 +331,7 @@
 				F45BE7AE25505E6600F6DB88 /* RegisterViewController.swift in Sources */,
 				F48E6FB4255886EC00104962 /* AthleteCalendarViewController.swift in Sources */,
 				F48E6FB82558873F00104962 /* CoachNotifViewController.swift in Sources */,
+				F40093E9259A547000D24696 /* CoachTrainingCell.swift in Sources */,
 				F48E6FB2255886B900104962 /* CoachCalendarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

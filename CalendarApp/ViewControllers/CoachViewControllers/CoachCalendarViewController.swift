@@ -16,6 +16,7 @@ class CoachCalendarViewController: UIViewController {
     
     var athletes = [String]()
     var tempID = ""
+    var currentUser = ""
     let db = Firestore.firestore()
     var selectedAthletes = [String]()
     
@@ -44,6 +45,7 @@ class CoachCalendarViewController: UIViewController {
         athletesTableView.dataSource = self
         athletesTableView.allowsMultipleSelection = true
         athletesTableView.allowsMultipleSelectionDuringEditing = true
+        setCurrentUsername()
     }
     
     func getSelectedAthletes() -> [String] {
@@ -59,6 +61,24 @@ class CoachCalendarViewController: UIViewController {
         return selectedAthletes
     }
     
+    func setCurrentUsername(){
+        let currentUserID = Auth.auth().currentUser?.uid
+        db.collection(K.FStore.usersCollection)
+            .whereField("ID", isEqualTo: currentUserID as Any)
+            .getDocuments { (querySnapshot, error) in
+                if let e = error {
+                    print("Problem with getting athlete data : \(e)")
+                } else {
+                    if let snapshotDocuments = querySnapshot?.documents {
+                        for doc in snapshotDocuments {
+                            let username = doc.get("username")
+                            self.currentUser = username as! String
+                        }
+                    }
+                }
+        }
+    }
+    
     func setTrainingUnit() -> TrainingUnit {
         var currentTraining = TrainingUnit()
         let athletes = getSelectedAthletes()
@@ -66,7 +86,7 @@ class CoachCalendarViewController: UIViewController {
         timeFormatter.dateFormat = "HH:mm"
         let timeOnly = timeFormatter.string(from: timePicker.date)
         if let date = popUpDateLabel.text, let place = placeTextField.text, let note = noteTextField.text {
-            currentTraining = TrainingUnit(date: date, time: timeOnly, place: place, athletes: athletes, note: note)
+            currentTraining = TrainingUnit(date: date, time: timeOnly, place: place, athletes: athletes, note: note, coach: currentUser)
         }
         return currentTraining
     }
@@ -90,7 +110,6 @@ class CoachCalendarViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     func addTrainingAthlete(workout: TrainingAthlete, docID: String){
@@ -123,7 +142,7 @@ class CoachCalendarViewController: UIViewController {
             }
         }
     }
-        
+    
     func setUpButtons(){
         closeButton.layer.borderWidth = 3
         closeButton.layer.borderColor = UIColor.systemRed.cgColor

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class Athlete: Codable {
     var email: String
     var username: String

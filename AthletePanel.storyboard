@@ -51,6 +51,34 @@
                                     <action selector="refreshButtonTap:" destination="VEm-mu-Bkv" eventType="touchUpInside" id="OKv-Kp-7y0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PLACE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5R-PO-GFF">
+                                <rect key="frame" x="20" y="510" width="241" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HH:MM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="188-9v-zhJ">
+                                <rect key="frame" x="269" y="510" width="125" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="note" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKC-JF-9ei">
+                                <rect key="frame" x="20" y="564" width="374" height="170"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="coach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ui-dj-pDJ">
+                                <rect key="frame" x="274" y="742" width="120" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6VA-ex-WyD"/>
@@ -59,9 +87,13 @@
                     <connections>
                         <outlet property="athleteCalendar" destination="vsg-Zb-Ojo" id="a2l-A8-3RH"/>
                         <outlet property="closeButton" destination="A0g-2v-ATc" id="cq0-Ts-MI6"/>
+                        <outlet property="coachLabel" destination="6ui-dj-pDJ" id="Ixh-ek-UNB"/>
                         <outlet property="dateLabel" destination="R8g-0Y-iyJ" id="4Jb-UW-otU"/>
+                        <outlet property="noteLabel" destination="VKC-JF-9ei" id="E8r-HQ-XwI"/>
+                        <outlet property="placeLabel" destination="a5R-PO-GFF" id="pgS-Pl-FVg"/>
                         <outlet property="statusButton" destination="82w-cb-jpW" id="8pR-Uc-eJO"/>
                         <outlet property="statusPopUpView" destination="xOm-no-sht" id="AV6-0M-ogJ"/>
+                        <outlet property="timeLabel" destination="188-9v-zhJ" id="e8E-CN-kn3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="doz-1V-qGt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -128,7 +160,7 @@
                     <viewLayoutGuide key="safeArea" id="yqV-0P-bOx"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1265" y="1988"/>
+            <point key="canvasLocation" x="1262.3188405797102" y="1987.5"/>
         </scene>
         <!--Athlete Profile View Controller-->
         <scene sceneID="XjU-qm-XE0">
@@ -192,8 +224,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mk-xf-Ldc">
+                                <rect key="frame" x="269" y="44" width="125" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="refresh">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshButtonTap:" destination="fFz-lT-jBs" eventType="touchUpInside" id="1HG-Fh-Xpw"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FTp-rz-Mc7">
-                                <rect key="frame" x="20" y="115" width="374" height="659"/>
+                                <rect key="frame" x="50" y="138" width="315" height="620"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
