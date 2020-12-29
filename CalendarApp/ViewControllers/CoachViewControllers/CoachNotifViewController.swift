@@ -17,10 +17,23 @@ class CoachNotifViewController: UIViewController {
     var currentUser = ""
     let db = Firestore.firestore()
     
-    var testDate = [TrainingUnit]()
+    var testDate = [CellInfo]()
+    
+    struct CellInfo {
+        var date: String
+        var time: String
+        var place: String
+        var athlete: String
+        var status: Int
+        var note: String
+    }
 
     override func viewDidLoad() {
+        setCurrentUsername()
         super.viewDidLoad()
+        coachTableView.dataSource = self
+        coachTableView.delegate = self
+        coachTableView.register(UINib(nibName: "CoachTrainingCell", bundle: nil), forCellReuseIdentifier: "ReusableCoachCell")
     }
     
     func setCurrentUsername(){
@@ -35,14 +48,16 @@ class CoachNotifViewController: UIViewController {
                         for doc in snapshotDocuments {
                             let username = doc.get("username")
                             self.currentUser = username as! String
+                            print(self.currentUser)
                         }
                     }
                 }
         }
     }
     
-    func getMyTrainings(callback: @escaping([TrainingUnit]) -> Void) {
-        var myTrainings: [TrainingUnit] = []
+    func getMyTrainings(callback: @escaping([CellInfo]) -> Void) {
+        var myTrainings: [CellInfo] = []
+        print("Func : \(self.currentUser)")
         self.db.collection("trainings").whereField("coach", isEqualTo: currentUser)
             .getDocuments { (querySnapshot, error) in
                 if let e = error {
@@ -51,18 +66,32 @@ class CoachNotifViewController: UIViewController {
                     if let snapshotDocuments = querySnapshot?.documents {
                         for doc in snapshotDocuments {
                             let data = doc.data()
+                            var currentTraining = CellInfo(date: data["date"] as! String,
+                                                           time: data["time"] as! String,
+                                                           place: data["place"] as! String,
+                                                           athlete: "",
+                                                           status: 0,
+                                                           note: data["note"] as! String)
                             
+                            let ID = doc.documentID
                             
-                            
-//                            let currentUnit = TrainingUnit(date: data["date"] as! String,
-//                            time: data["time"] as! String,
-//                            place: data["place"] as! String,
-//                            athletes: data["athletes"] as! [String],
-//                            note: data["note"] as! String,
-//                            coach: data["coach"] as! String)
-                            //myTrainings.append(currentUnit)
+                            self.db.collection("trainings").document(ID).collection("testSubCol").getDocuments { (querySnapshot, error) in
+                                if let e = error {
+                                    print("Problem with getting sub-data : \(e)")
+                                } else {
+                                    if let snapshotDocuments = querySnapshot?.documents {
+                                        for doc in snapshotDocuments {
+                                            let subData = doc.data()
+                                            currentTraining.athlete = subData["athlete"] as! String
+                                            currentTraining.status = subData["status"] as! Int
+                                            print("success ! : \(currentTraining.athlete), \(currentTraining.note), \(currentTraining.status)")
+                                            myTrainings.append(currentTraining)
+                                        }
+                                    }
+                                }
+                                callback(myTrainings)
+                            }
                         }
-                        callback(myTrainings)
                     }
                 }
         }
@@ -72,18 +101,12 @@ class CoachNotifViewController: UIViewController {
         getMyTrainings { (trainings) in
             self.testDate = trainings
             DispatchQueue.main.async {
-                print("TEST REFRESH : \(self.testDate[0].note)")
+                print("TEST REFRESH : \(self.testDate.count)")
                 self.coachTableView.reloadData()
+                print("reloaded")
             }
         }
     }
-}
-
-extension CoachNotifViewController : UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 200
-        }
 }
 
 extension CoachNotifViewController : UITableViewDataSource {
@@ -92,7 +115,8 @@ extension CoachNotifViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = coachTableView.dequeueReusableCell(withIdentifier: "ReusableCoachCell", for: indexPath) as! TrainingUnitCell
+        let cell = coachTableView.dequeueReusableCell(withIdentifier: "ReusableCoachCell", for: indexPath) as! CoachTrainingCell
+        cell.athleteLabel.text = testDate[indexPath.row].athlete
         cell.dateLabel.text = testDate[indexPath.row].date
         cell.placeLabel.text = testDate[indexPath.row].place
         cell.timeLabel.text = testDate[indexPath.row].time
@@ -101,6 +125,11 @@ extension CoachNotifViewController : UITableViewDataSource {
         
         return cell
     }
+}
+
+extension CoachNotifViewController : UITableViewDelegate {
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 200
+        }
 }

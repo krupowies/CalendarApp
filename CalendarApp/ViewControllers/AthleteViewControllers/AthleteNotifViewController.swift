@@ -59,15 +59,13 @@ class AthleteNotifViewController: UIViewController {
                         for doc in snapshotDocuments {
                             let data = doc.data()
                             let currentUnit = TrainingUnit(date: data["date"] as! String,
-                            time: data["time"] as! String,
-                            place: data["place"] as! String,
-                            athletes: data["athletes"] as! [String],
-                            note: data["note"] as! String,
-                            coach: data["coach"] as! String)
-//                            myTrainings.append(tempDate as! String)
-//                            print("FUNC : \(tempDate as! String)")
-//                            callback(myTrainings)
+                                                           time: data["time"] as! String,
+                                                           place: data["place"] as! String,
+                                                           athletes: data["athletes"] as! [String],
+                                                           note: data["note"] as! String,
+                                                           coach: data["coach"] as! String)
                             let ID = doc.documentID
+                            
                             self.db.collection("trainings").document(ID).collection("testSubCol")
                                 .whereField("athlete", isEqualTo: self.currentUser).getDocuments { (querySnapshot, error) in
                                         if let e = error {
