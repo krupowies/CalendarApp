@@ -66,6 +66,7 @@
                 <outlet property="dateLabel" destination="N6N-D2-lAN" id="wN5-wr-U0r"/>
                 <outlet property="noteLabel" destination="Pbl-KZ-Chg" id="7x2-Zf-HPH"/>
                 <outlet property="placeLabel" destination="OAd-VL-Z73" id="Aoj-iA-5I9"/>
+                <outlet property="statusView" destination="Uko-AJ-qsP" id="N8X-60-nes"/>
                 <outlet property="timeLabel" destination="Qyu-2A-dNh" id="GO3-PQ-X85"/>
             </connections>
             <point key="canvasLocation" x="180.43478260869566" y="114.50892857142857"/>

@@ -15,11 +15,15 @@ class CoachTrainingCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
+    @IBOutlet weak var statusView: UIView!
     
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        statusView.layer.borderWidth = 5
+        statusView.layer.borderColor = UIColor.black.cgColor
+        statusView.layer.cornerRadius = 10
         // Initialization code
     }
 
@@ -28,5 +32,18 @@ class CoachTrainingCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+        func setStatusViewColour(status: Int){
+            switch status {
+            case 0:
+                statusView.backgroundColor = .systemOrange
+            case 1:
+                statusView.backgroundColor = .systemGreen
+            case 2:
+                statusView.backgroundColor = .systemRed
+            default:
+                statusView.backgroundColor = .white
+            }
+        }
     
 }

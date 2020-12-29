@@ -121,6 +121,7 @@ extension CoachNotifViewController : UITableViewDataSource {
         cell.placeLabel.text = testDate[indexPath.row].place
         cell.timeLabel.text = testDate[indexPath.row].time
         cell.noteLabel.text = testDate[indexPath.row].note
+        cell.setStatusViewColour(status: testDate[indexPath.row].status)
         cell.selectionStyle = .none
         
         return cell

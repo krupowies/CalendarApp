@@ -93,8 +93,7 @@ class AthleteNotifViewController: UIViewController {
     @IBAction func refreshButtonTap(_ sender: Any) {
         getMyTrainings { (trainings) in
             self.testDate = trainings
-            DispatchQueue.main.async {
-                print("TEST REFRESH : \(self.testDate[0].note)")
+            DispatchQueue.main.async { 
                 self.trainingPlanTable.reloadData()
             }
         }

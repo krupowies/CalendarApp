@@ -122,10 +122,11 @@ class CoachCalendarViewController: UIViewController {
         }
     }
     
-    //TUTAJ DODAĆ WARUNEK WHERE ROLE = "ATHLETE"
     func getMyAthletes(callback: @escaping([String]) -> Void) {
         var myAthletes: [String] = []
-        self.db.collection((K.FStore.usersCollection)).getDocuments { (querySnapshot, error) in
+        self.db.collection((K.FStore.usersCollection))
+            .whereField("role", isEqualTo: "athlete")
+            .getDocuments { (querySnapshot, error) in
             if let e = error {
                 print("Problem with getting athletes : \(e)")
             } else {

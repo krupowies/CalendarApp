@@ -11,7 +11,7 @@ import FirebaseAuth
 import Firebase
 import FirebaseFirestoreSwift
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -27,6 +27,7 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         setUpButtons()
         setUpTextFileds()
+        usernameTextField.delegate = self
     }
     
     func setUpTextFileds() {
@@ -38,87 +39,69 @@ class RegisterViewController: UIViewController {
     func setUpButtons() {
         registerButton.layer.cornerRadius = 10
     }
-    
-//    func usernameTaken(_ completion: @escaping (_ taken: Bool?) -> Void) ->Bool? {
+        
+//    func usernameTaken(callback: @escaping(Bool?) -> Void) {
 //        let currentUsername = usernameTextField.text
-//
-//        db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!).getDocuments() { (querySnapshot, err) in
+//        self.db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!).getDocuments() { (querySnapshot, err) in
 //            if let err = err {
 //                print("Error getting documents: \(err)")
-//                completion(nil) // error; unknown if taken
+//                callback(nil) // error; unknown if taken
 //            } else {
 //                if querySnapshot!.isEmpty {
-//                    completion(false) // no documents; not taken
+//                    callback(false) // no documents; not taken
 //                } else {
-//                    completion(true) // at least 1 document; taken
+//                    callback(true) // at least 1 document; taken
 //                }
 //            }
 //        }
-//        return nil
 //    }
     
-    func usernameTaken(callback: @escaping(Bool?) -> Void) {
-        let currentUsername = usernameTextField.text
-        self.db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-                callback(nil) // error; unknown if taken
-            } else {
-                if querySnapshot!.isEmpty {
-                    callback(false) // no documents; not taken
-                } else {
-                    callback(true) // at least 1 document; taken
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.errorLabel.text = ""
+        self.registerButton.isEnabled = true
+        if textField == usernameTextField {
+            self.usernameTaken { (ifTaken) in
+                self.ifUsernameTaken = ifTaken
+                DispatchQueue.main.async {
+                    if self.ifUsernameTaken == true {
+                        self.registerButton.isEnabled = false
+                        self.errorLabel.text = "This username is already taken."
+                    }
                 }
             }
         }
     }
     
+    func usernameTaken(callback: @escaping (Bool) -> Void) {
+        let currentUsername = usernameTextField.text
+        var isTaken = false
+        self.db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!)
+            .getDocuments { (querySnapshot, error) in
+                if let e = error {
+                    print("Problem with username function : \(e)")
+                } else {
+                    if querySnapshot!.isEmpty {
+                        isTaken = false
+                        callback(isTaken)
+                    } else {
+                        isTaken = true
+                        callback(isTaken)
+                    }
+                }
+        }
+    }
     
-//    func usernameTaken() -> Bool {
-//        let currentUsername = usernameTextField.text
-//        var isTaken = false
-//        let group = DispatchGroup()
-//
-//        db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!)
-//        .getDocuments() { (querySnapshot, err) in
-//                if let err = err {
-//                    print("Error getting documents: \(err)")
-//                } else {
-//                    for document in querySnapshot!.documents {
-//                        group.enter()
-//                        print("Same username ID: \(document.documentID)")
-//                        print("Username used")
-//                        isTaken = true
-//                        group.leave()
-//                    }
-//                }
-//        }
-//        group.notify(queue: .main) {
-//            print(isTaken)
-//            print("Group notify")
-//        }
-//        print("82 : \(isTaken)")
-//        return isTaken
-//    }
     
     func validateTextFields() -> String? {
-        var error: String? =  nil
+        
         if usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             
             return "Please fill in all fields."
-        } else {
-            self.usernameTaken { (ifTaken) in
-                self.ifUsernameTaken = ifTaken ?? false
-                DispatchQueue.main.async {
-                    if self.ifUsernameTaken == true {
-                        error = "User name taken"
-                    } else {error = nil}
-                }
-            }
         }
-        return error
+        
+        return nil
     }
     
     func setUserRole () -> String {
