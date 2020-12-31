@@ -55,6 +55,27 @@ class CoachNotifViewController: UIViewController {
         }
     }
     
+    func deleteTrainingAthlete(training: CellInfo,callback: @escaping(Bool) -> Void){
+        var docID = ""
+        self.db.collection("trainings")
+            .whereField("date", isEqualTo: training.date)
+            .whereField("note", isEqualTo: training.note)
+            .whereField("place", isEqualTo: training.place)
+            .whereField("time", isEqualTo: training.time)
+            .getDocuments { (querySnapshot, error) in
+            if let e = error {
+                print("Problem with getting workout ID : \(e)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for doc in snapshotDocuments {
+                        docID = doc.documentID
+                        
+                    }
+                }
+            }
+        }
+    }
+    
     func getMyTrainings(callback: @escaping([CellInfo]) -> Void) {
         var myTrainings: [CellInfo] = []
         print("Func : \(self.currentUser)")
@@ -133,4 +154,19 @@ extension CoachNotifViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 200
         }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print(testDate[indexPath.row].athlete)
+            coachTableView.beginUpdates()
+            testDate.remove(at: indexPath.row)
+            coachTableView.deleteRows(at: [indexPath], with: .fade)
+            coachTableView.endUpdates()
+        }
+    }
+    
 }

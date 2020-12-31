@@ -113,7 +113,6 @@ extension AthleteNotifViewController : UITableViewDataSource {
         cell.timeLabel.text = testDate[indexPath.row].time
         cell.noteLabel.text = testDate[indexPath.row].note
         cell.selectionStyle = .none
-        //cell.animate()
         return cell
     }
     
@@ -130,10 +129,6 @@ extension AthleteNotifViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if selectedIndex == indexPath { return 200 }
         return 200
     }
 }
-
-
-//ReusableTrainingCell

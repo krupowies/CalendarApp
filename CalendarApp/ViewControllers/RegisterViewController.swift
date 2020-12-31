@@ -39,23 +39,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func setUpButtons() {
         registerButton.layer.cornerRadius = 10
     }
-        
-//    func usernameTaken(callback: @escaping(Bool?) -> Void) {
-//        let currentUsername = usernameTextField.text
-//        self.db.collection((K.FStore.usersCollection)).whereField(K.FStore.usernameField, isEqualTo: currentUsername!).getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//                callback(nil) // error; unknown if taken
-//            } else {
-//                if querySnapshot!.isEmpty {
-//                    callback(false) // no documents; not taken
-//                } else {
-//                    callback(true) // at least 1 document; taken
-//                }
-//            }
-//        }
-//    }
-    
+            
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.errorLabel.text = ""
         self.registerButton.isEnabled = true
