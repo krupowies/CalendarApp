@@ -16,6 +16,7 @@ class CoachNotifViewController: UIViewController {
     @IBOutlet weak var coachTableView: UITableView!
     var currentUser = ""
     let db = Firestore.firestore()
+    var delete: Bool = false
     
     var testDate = [CellInfo]()
     
@@ -69,7 +70,17 @@ class CoachNotifViewController: UIViewController {
                 if let snapshotDocuments = querySnapshot?.documents {
                     for doc in snapshotDocuments {
                         docID = doc.documentID
-                        
+                        self.db.collection("trainings").document(docID).updateData([
+                            "athletes": FieldValue.arrayRemove([training.athlete])
+                        ])
+                        self.db.collection("trainings").document(docID).collection("testSubCol").document(training.athlete).delete { (error) in
+                            if let e = error {
+                                print("Error removing document: \(e)")
+                            } else {
+                                print("Document from subcollection successfully removed!")
+                            }
+                        }
+                        callback(true)
                     }
                 }
             }
@@ -161,12 +172,20 @@ extension CoachNotifViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print(testDate[indexPath.row].athlete)
-            coachTableView.beginUpdates()
-            testDate.remove(at: indexPath.row)
-            coachTableView.deleteRows(at: [indexPath], with: .fade)
-            coachTableView.endUpdates()
+            
+            deleteTrainingAthlete(training: testDate[indexPath.row]) { (ifDelete) in
+                print("SIEMA1")
+                self.delete = ifDelete
+                DispatchQueue.main.async {
+                    print("SIEMA2")
+                    print(self.testDate[indexPath.row].athlete)
+                    self.coachTableView.beginUpdates()
+                    self.testDate.remove(at: indexPath.row)
+                    self.coachTableView.deleteRows(at: [indexPath], with: .fade)
+                    self.coachTableView.endUpdates()
+                    print(self.delete)
+                }
+            }
         }
     }
-    
 }
