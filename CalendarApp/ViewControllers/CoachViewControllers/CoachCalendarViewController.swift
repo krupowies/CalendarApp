@@ -106,7 +106,7 @@ class CoachCalendarViewController: UIViewController {
                     for doc in snapshotDocuments {
                         trainingID = doc.documentID
                         callback(trainingID)
-                    }
+                    } 
                 }
             }
         }
