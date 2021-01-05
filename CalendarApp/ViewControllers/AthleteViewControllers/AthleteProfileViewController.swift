@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import FirebaseFirestore
 
 class AthleteProfileViewController: UIViewController {
     
@@ -43,7 +44,7 @@ class AthleteProfileViewController: UIViewController {
     @IBAction func logOutButtonTap(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            performSegue(withIdentifier: "logOutSegue", sender: nil)
+            performSegue(withIdentifier: K.Segues.LogOut, sender: nil)
         } catch let signOutError as NSError {
           print ("Error signing out: %@", signOutError)
         }

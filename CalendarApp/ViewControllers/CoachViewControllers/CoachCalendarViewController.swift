@@ -11,6 +11,7 @@ import FSCalendar
 import FirebaseAuth
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 class CoachCalendarViewController: UIViewController {
     
@@ -64,14 +65,14 @@ class CoachCalendarViewController: UIViewController {
     func setCurrentUsername(){
         let currentUserID = Auth.auth().currentUser?.uid
         db.collection(K.FStore.usersCollection)
-            .whereField("ID", isEqualTo: currentUserID as Any)
+            .whereField(K.FStore.IDField, isEqualTo: currentUserID as Any)
             .getDocuments { (querySnapshot, error) in
                 if let e = error {
                     print("Problem with getting athlete data : \(e)")
                 } else {
                     if let snapshotDocuments = querySnapshot?.documents {
                         for doc in snapshotDocuments {
-                            let username = doc.get("username")
+                            let username = doc.get(K.FStore.usernameField)
                             self.currentUser = username as! String
                         }
                     }
@@ -93,7 +94,7 @@ class CoachCalendarViewController: UIViewController {
     
     func getTrainingID(training: TrainingUnit ,callback: @escaping(String) -> Void) {
         var trainingID: String = "init"
-        self.db.collection("trainings")
+        self.db.collection(K.FStore.trainingsCollection)
             .whereField("date", isEqualTo: training.date)
             .whereField("note", isEqualTo: training.note)
             .whereField("place", isEqualTo: training.place)
@@ -114,9 +115,9 @@ class CoachCalendarViewController: UIViewController {
     
     func addTrainingAthlete(workout: TrainingAthlete, docID: String){
         let newTrainingAthlete = workout
-        let ref: DocumentReference = db.collection("trainings").document(docID)
+        let ref: DocumentReference = db.collection(K.FStore.trainingsCollection).document(docID)
         do {
-            try ref.collection("testSubCol").document(newTrainingAthlete.athlete).setData(from: newTrainingAthlete)
+            try ref.collection(K.FStore.athleteStatus).document(newTrainingAthlete.athlete).setData(from: newTrainingAthlete)
         } catch let error {
             print("Error writing workout to Firestore: \(error)")
         }
@@ -125,7 +126,7 @@ class CoachCalendarViewController: UIViewController {
     func getMyAthletes(callback: @escaping([String]) -> Void) {
         var myAthletes: [String] = []
         self.db.collection((K.FStore.usersCollection))
-            .whereField("role", isEqualTo: "athlete")
+            .whereField(K.FStore.roleField, isEqualTo: "athlete")
             .getDocuments { (querySnapshot, error) in
             if let e = error {
                 print("Problem with getting athletes : \(e)")
@@ -212,7 +213,7 @@ class CoachCalendarViewController: UIViewController {
         hidePopUp()
         let newTraining = setTrainingUnit()
         do {
-            try db.collection("trainings").document().setData(from: newTraining)
+            try db.collection(K.FStore.trainingsCollection).document().setData(from: newTraining)
             print("New workout successfully added to Firestore")
         } catch let error {
             print("Error writing workout to Firestore: \(error)")

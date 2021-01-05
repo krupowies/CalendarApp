@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     

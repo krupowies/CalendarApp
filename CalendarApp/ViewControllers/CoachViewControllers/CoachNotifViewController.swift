@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 class CoachNotifViewController: UIViewController {
     
@@ -58,7 +59,7 @@ class CoachNotifViewController: UIViewController {
     
     func deleteTrainingAthlete(training: CellInfo,callback: @escaping(Bool) -> Void){
         var docID = ""
-        self.db.collection("trainings")
+        self.db.collection(K.FStore.trainingsCollection)
             .whereField("date", isEqualTo: training.date)
             .whereField("note", isEqualTo: training.note)
             .whereField("place", isEqualTo: training.place)
@@ -70,10 +71,10 @@ class CoachNotifViewController: UIViewController {
                 if let snapshotDocuments = querySnapshot?.documents {
                     for doc in snapshotDocuments {
                         docID = doc.documentID
-                        self.db.collection("trainings").document(docID).updateData([
+                        self.db.collection(K.FStore.trainingsCollection).document(docID).updateData([
                             "athletes": FieldValue.arrayRemove([training.athlete])
                         ])
-                        self.db.collection("trainings").document(docID).collection("testSubCol").document(training.athlete).delete { (error) in
+                        self.db.collection(K.FStore.trainingsCollection).document(docID).collection(K.FStore.athleteStatus).document(training.athlete).delete { (error) in
                             if let e = error {
                                 print("Error removing document: \(e)")
                             } else {
@@ -90,7 +91,7 @@ class CoachNotifViewController: UIViewController {
     func getMyTrainings(callback: @escaping([CellInfo]) -> Void) {
         var myTrainings: [CellInfo] = []
         print("Func : \(self.currentUser)")
-        self.db.collection("trainings").whereField("coach", isEqualTo: currentUser)
+        self.db.collection(K.FStore.trainingsCollection).whereField("coach", isEqualTo: currentUser)
             .getDocuments { (querySnapshot, error) in
                 if let e = error {
                     print("Problem with getting training data : \(e)")
@@ -107,7 +108,7 @@ class CoachNotifViewController: UIViewController {
                             
                             let ID = doc.documentID
                             
-                            self.db.collection("trainings").document(ID).collection("testSubCol").getDocuments { (querySnapshot, error) in
+                            self.db.collection(K.FStore.trainingsCollection).document(ID).collection(K.FStore.athleteStatus).getDocuments { (querySnapshot, error) in
                                 if let e = error {
                                     print("Problem with getting sub-data : \(e)")
                                 } else {

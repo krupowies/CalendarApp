@@ -11,6 +11,7 @@ struct K {
     struct Segues {
         static let toCoachPanel = "CoachSegue"
         static let toAthletePanel = "AthleteSegue"
+        static let LogOut = "logOutSegue"
     }
     
     struct FStore {
@@ -19,5 +20,7 @@ struct K {
         static let emailField = "email"
         static let IDField = "ID"
         static let roleField = "role"
+        static let athleteStatus = "athleteStatus"
+        static let trainingsCollection = "trainings"
     }
 }

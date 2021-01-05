@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 class AthleteNotifViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class AthleteNotifViewController: UIViewController {
     var currentUser = ""
     let db = Firestore.firestore()
     
-    var testDate = [TrainingUnit]()
+    var athleteTrainings = [TrainingUnit]()
     
     
     @IBOutlet weak var trainingPlanTable: UITableView!
@@ -50,7 +51,7 @@ class AthleteNotifViewController: UIViewController {
     
     func getMyTrainings(callback: @escaping([TrainingUnit]) -> Void) {
         var myTrainings: [TrainingUnit] = []
-        self.db.collection("trainings").whereField("athletes", arrayContains: currentUser)
+        self.db.collection(K.FStore.trainingsCollection).whereField("athletes", arrayContains: currentUser)
             .getDocuments { (querySnapshot, error) in
                 if let e = error {
                     print("Problem with getting training data : \(e)")
@@ -66,7 +67,7 @@ class AthleteNotifViewController: UIViewController {
                                                            coach: data["coach"] as! String)
                             let ID = doc.documentID
                             
-                            self.db.collection("trainings").document(ID).collection("testSubCol")
+                            self.db.collection(K.FStore.trainingsCollection).document(ID).collection(K.FStore.athleteStatus)
                                 .whereField("athlete", isEqualTo: self.currentUser).getDocuments { (querySnapshot, error) in
                                         if let e = error {
                                             print("Problem with getting status : \(e)")
@@ -77,9 +78,7 @@ class AthleteNotifViewController: UIViewController {
                                                     if data["status"] as! Int == 1 {
                                                         myTrainings.append(currentUnit)
                                                     }
-                                                    //callback(myTrainings)
                                                 }
-                                                //callback(myTrainings)
                                             }
                                             callback(myTrainings)
                                         }
@@ -90,10 +89,12 @@ class AthleteNotifViewController: UIViewController {
         }
     }
     
+
+        
     @IBAction func refreshButtonTap(_ sender: Any) {
         getMyTrainings { (trainings) in
-            self.testDate = trainings
-            DispatchQueue.main.async { 
+            self.athleteTrainings = trainings
+            DispatchQueue.main.async {
                 self.trainingPlanTable.reloadData()
             }
         }
@@ -103,15 +104,15 @@ class AthleteNotifViewController: UIViewController {
 
 extension AthleteNotifViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testDate.count
+        return athleteTrainings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = trainingPlanTable.dequeueReusableCell(withIdentifier: "ReusableTrainingCell", for: indexPath) as! TrainingUnitCell
-        cell.dateLabel.text = testDate[indexPath.row].date
-        cell.placeLabel.text = testDate[indexPath.row].place
-        cell.timeLabel.text = testDate[indexPath.row].time
-        cell.noteLabel.text = testDate[indexPath.row].note
+        cell.dateLabel.text = athleteTrainings[indexPath.row].date
+        cell.placeLabel.text = athleteTrainings[indexPath.row].place
+        cell.timeLabel.text = athleteTrainings[indexPath.row].time
+        cell.noteLabel.text = athleteTrainings[indexPath.row].note
         cell.selectionStyle = .none
         return cell
     }

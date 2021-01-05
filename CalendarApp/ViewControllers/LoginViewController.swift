@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import FirebaseFirestore
 
 class LoginViewController: UIViewController {
     
@@ -27,7 +28,8 @@ class LoginViewController: UIViewController {
     
     func setUpTextFileds() {
         emailTextField.layer.cornerRadius = 0.5
-           passwordTextField.layer.cornerRadius = 0.5
+        passwordTextField.layer.cornerRadius = 0.5
+        passwordTextField.isSecureTextEntry = true
        }
     
     func setUpButtons() {
