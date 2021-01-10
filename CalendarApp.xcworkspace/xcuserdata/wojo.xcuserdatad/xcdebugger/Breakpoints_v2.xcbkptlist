@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "77B76C65-EA8E-4F94-9474-D1EB47187A41"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D33B47C7-ED19-4B50-8346-F85ED096C102"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CalendarApp/ViewControllers/RegisterViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "validateTextFields()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D33B47C7-ED19-4B50-8346-F85ED096C102 - 66b610b24e928835"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalendarApp.RegisterViewController.validateTextFields() -&gt; Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "CalendarApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wojo/Desktop/CalendarApp/CalendarApp/ViewControllers/RegisterViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "3288">
+               </Location>
+               <Location
+                  uuid = "D33B47C7-ED19-4B50-8346-F85ED096C102 - 4e2cb2573e027d3a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in CalendarApp.RegisterViewController.validateTextFields() -&gt; Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "CalendarApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wojo/Desktop/CalendarApp/CalendarApp/ViewControllers/RegisterViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "177">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
