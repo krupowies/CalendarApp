@@ -138,7 +138,6 @@
 				F45BE7A02550514300F6DB88 /* Assets.xcassets */,
 				F45BE7A52550514300F6DB88 /* Info.plist */,
 				F45BE7AF255064D700F6DB88 /* GoogleService-Info.plist */,
-				F48E6FBF25588FAE00104962 /* Constants.swift */,
 			);
 			path = CalendarApp;
 			sourceTree = "<group>";
@@ -190,6 +189,7 @@
 			children = (
 				F4EEC83225729FE0000CC73A /* Athlete.swift */,
 				F4EEC83425729FEF000CC73A /* Coach.swift */,
+				F48E6FBF25588FAE00104962 /* Constants.swift */,
 				F4EEC8362573E22A000CC73A /* TrainingUnit.swift */,
 				F40093E5258CF1CB00D24696 /* TrainingAthlete.swift */,
 			);
