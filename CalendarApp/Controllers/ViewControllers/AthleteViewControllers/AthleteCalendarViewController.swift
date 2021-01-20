@@ -95,16 +95,16 @@ class AthleteCalendarViewController: UIViewController {
     
     func getMyTrainings(callback: @escaping([String]) -> Void) {
         var myTrainings: [String] = []
-        self.db.collection(K.FStore.trainingsCollection).whereField("athletes", arrayContains: currentUser)
+        self.db.collection(K.FStore.trainingsCollection)
+            .whereField(K.FStore.athletesArray, arrayContains: currentUser)
             .getDocuments { (querySnapshot, error) in
                 if let e = error {
                     print("Problem with getting training data : \(e)")
                 } else {
                     if let snapshotDocuments = querySnapshot?.documents {
                         for doc in snapshotDocuments {
-                            let tempDate = doc.get("date")
+                            let tempDate = doc.get(K.FStore.dateField)
                             myTrainings.append(tempDate as! String)
-                            print("FUNC : \(tempDate as! String)")
                             callback(myTrainings)
                         }
                     }
@@ -192,7 +192,7 @@ class AthleteCalendarViewController: UIViewController {
     
     func setTrainingStatus(status: Int){
         self.db.collection(K.FStore.trainingsCollection).document(self.currentTrainingID)
-            .collection(K.FStore.athleteStatus).document(self.currentUser).updateData(["status" : status]) { (error) in
+            .collection(K.FStore.athleteStatus).document(self.currentUser).updateData([K.FStore.statusField : status]) { (error) in
                 if let e = error {
                     print("Problem with setting status : \(e)")
                 } else {
@@ -269,8 +269,6 @@ class AthleteCalendarViewController: UIViewController {
     @IBAction func closeButtonTap(_ sender: Any) {
         hidePopUp()
     }
-    
-    
 }
 
 extension AthleteCalendarViewController: FSCalendarDataSource {
@@ -295,7 +293,7 @@ extension AthleteCalendarViewController: FSCalendarDelegateAppearance {
         
         if athleteTrainings.contains(dateString) {
 
-            return UIColor.systemPink
+            return UIColor.systemYellow
 
         }
 

@@ -97,15 +97,40 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		F40093E025852B0900D24696 /* Cells */ = {
+		F40093E025852B0900D24696 /* CellsView */ = {
+			isa = PBXGroup;
+			children = (
+				F40093E225852BB800D24696 /* TrainingUnitCell.xib */,
+				F40093E8259A547000D24696 /* CoachTrainingCell.xib */,
+			);
+			path = CellsView;
+			sourceTree = "<group>";
+		};
+		F40CB0A725AF46EC001DE7FA /* CellsControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F40093E125852BB800D24696 /* TrainingUnitCell.swift */,
-				F40093E225852BB800D24696 /* TrainingUnitCell.xib */,
 				F40093E7259A547000D24696 /* CoachTrainingCell.swift */,
-				F40093E8259A547000D24696 /* CoachTrainingCell.xib */,
 			);
-			path = Cells;
+			path = CellsControllers;
+			sourceTree = "<group>";
+		};
+		F40CB0A825AF472B001DE7FA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F45BE7AC25505E1D00F6DB88 /* Storyboards */,
+				F40093E025852B0900D24696 /* CellsView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F40CB0A925AF4772001DE7FA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F45BE7AB25505DE900F6DB88 /* ViewControllers */,
+				F40CB0A725AF46EC001DE7FA /* CellsControllers */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		F45BE78B2550513500F6DB88 = {
@@ -132,9 +157,8 @@
 				F45BE7972550513500F6DB88 /* AppDelegate.swift */,
 				F45BE7992550513500F6DB88 /* SceneDelegate.swift */,
 				F4EEC83125729FAF000CC73A /* Models */,
-				F40093E025852B0900D24696 /* Cells */,
-				F45BE7AC25505E1D00F6DB88 /* Storyboards */,
-				F45BE7AB25505DE900F6DB88 /* ViewControllers */,
+				F40CB0A825AF472B001DE7FA /* Views */,
+				F40CB0A925AF4772001DE7FA /* Controllers */,
 				F45BE7A02550514300F6DB88 /* Assets.xcassets */,
 				F45BE7A52550514300F6DB88 /* Info.plist */,
 				F45BE7AF255064D700F6DB88 /* GoogleService-Info.plist */,

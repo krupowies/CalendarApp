@@ -20,7 +20,10 @@ struct K {
         static let emailField = "email"
         static let IDField = "ID"
         static let roleField = "role"
+        static let athletesArray = "athletes"
         static let athleteStatus = "athleteStatus"
         static let trainingsCollection = "trainings"
+        static let dateField = "date"
+        static let statusField = "status"
     }
 }
