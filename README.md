@@ -1,4 +1,4 @@
-# Mobile application supporting the organization of training :swimmer:
+# Mobile application supporting the organization of training
 
 Welcome to "CalendarApp" repo where I present my diploma project. :mortar_board:
 
