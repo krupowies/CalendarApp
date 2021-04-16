@@ -15,6 +15,11 @@
 		F40093EA259A547100D24696 /* CoachTrainingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40093E8259A547000D24696 /* CoachTrainingCell.xib */; };
 		F40CB1AD262987D500D97D29 /* loginscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = F40CB1AC262987D500D97D29 /* loginscreen.png */; };
 		F40CB1AF262988C700D97D29 /* registerscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = F40CB1AE262988C600D97D29 /* registerscreen.png */; };
+		F40CB1B126298A4B00D97D29 /* coachPlanScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = F40CB1B026298A4B00D97D29 /* coachPlanScreen.png */; };
+		F40CB1B326298ADA00D97D29 /* coachPopupWindow.png in Resources */ = {isa = PBXBuildFile; fileRef = F40CB1B226298ADA00D97D29 /* coachPopupWindow.png */; };
+		F40CB1B526298AF300D97D29 /* athleteCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = F40CB1B426298AF300D97D29 /* athleteCalendar.png */; };
+		F40CB1B726298B0600D97D29 /* athletePopup.png in Resources */ = {isa = PBXBuildFile; fileRef = F40CB1B626298B0600D97D29 /* athletePopup.png */; };
+		F40CB1B926298B1800D97D29 /* athletePlan.png in Resources */ = {isa = PBXBuildFile; fileRef = F40CB1B826298B1800D97D29 /* athletePlan.png */; };
 		F45BE7982550513500F6DB88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE7972550513500F6DB88 /* AppDelegate.swift */; };
 		F45BE79A2550513500F6DB88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BE7992550513500F6DB88 /* SceneDelegate.swift */; };
 		F45BE79F2550513500F6DB88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45BE79D2550513500F6DB88 /* Main.storyboard */; };
@@ -48,6 +53,11 @@
 		F40093E8259A547000D24696 /* CoachTrainingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTrainingCell.xib; sourceTree = "<group>"; };
 		F40CB1AC262987D500D97D29 /* loginscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginscreen.png; sourceTree = "<group>"; };
 		F40CB1AE262988C600D97D29 /* registerscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registerscreen.png; sourceTree = "<group>"; };
+		F40CB1B026298A4B00D97D29 /* coachPlanScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coachPlanScreen.png; sourceTree = "<group>"; };
+		F40CB1B226298ADA00D97D29 /* coachPopupWindow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coachPopupWindow.png; sourceTree = "<group>"; };
+		F40CB1B426298AF300D97D29 /* athleteCalendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = athleteCalendar.png; sourceTree = "<group>"; };
+		F40CB1B626298B0600D97D29 /* athletePopup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = athletePopup.png; sourceTree = "<group>"; };
+		F40CB1B826298B1800D97D29 /* athletePlan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = athletePlan.png; sourceTree = "<group>"; };
 		F45BE7942550513500F6DB88 /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45BE7972550513500F6DB88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F45BE7992550513500F6DB88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +150,11 @@
 		F40CB1AB2629874600D97D29 /* Readme */ = {
 			isa = PBXGroup;
 			children = (
+				F40CB1B626298B0600D97D29 /* athletePopup.png */,
+				F40CB1B826298B1800D97D29 /* athletePlan.png */,
+				F40CB1B426298AF300D97D29 /* athleteCalendar.png */,
+				F40CB1B226298ADA00D97D29 /* coachPopupWindow.png */,
+				F40CB1B026298A4B00D97D29 /* coachPlanScreen.png */,
 				F40CB1AE262988C600D97D29 /* registerscreen.png */,
 				F40CB1AC262987D500D97D29 /* loginscreen.png */,
 			);
@@ -294,13 +309,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F40CB1B526298AF300D97D29 /* athleteCalendar.png in Resources */,
 				F40093EA259A547100D24696 /* CoachTrainingCell.xib in Resources */,
+				F40CB1B926298B1800D97D29 /* athletePlan.png in Resources */,
 				F45BE7A42550514300F6DB88 /* LaunchScreen.storyboard in Resources */,
 				F40CB1AF262988C700D97D29 /* registerscreen.png in Resources */,
 				F45BE7A12550514300F6DB88 /* Assets.xcassets in Resources */,
+				F40CB1B726298B0600D97D29 /* athletePopup.png in Resources */,
 				F45BE7B0255064D800F6DB88 /* GoogleService-Info.plist in Resources */,
+				F40CB1B126298A4B00D97D29 /* coachPlanScreen.png in Resources */,
 				F48E6FAD2556CB8100104962 /* CoachPanel.storyboard in Resources */,
 				F45BE79F2550513500F6DB88 /* Main.storyboard in Resources */,
+				F40CB1B326298ADA00D97D29 /* coachPopupWindow.png in Resources */,
 				F40093E425852BB800D24696 /* TrainingUnitCell.xib in Resources */,
 				F40CB1AD262987D500D97D29 /* loginscreen.png in Resources */,
 				F48E6FB02556CE3900104962 /* AthletePanel.storyboard in Resources */,
